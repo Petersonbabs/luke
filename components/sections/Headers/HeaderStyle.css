@@ -1,0 +1,9 @@
+
+
+.logo{
+    width: 150px;
+    height: fit-content;
+    img{
+        width: 100%;
+    }
+}
