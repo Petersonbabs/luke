@@ -1,4 +1,4 @@
-import MainHeader from "@/components/sections/Headers/Header";
+import MainHeader from "@/components/layouts/Headers/Header";
 
 export default function PagesLayout({ children }) {
     return (
