@@ -1,3 +1,4 @@
+"use client"
 import HeaderData from "@/data/layouts/mainheader";
 import CartData from "@/data/cart";
 import Link from "next/link";
@@ -5,15 +6,31 @@ import "./HeaderStyle.css";
 import SheetUI from "../SheetUI/SheetUI";
 import { AlignRight, ShoppingCart } from "lucide-react";
 import MiniSidebar from "../MiniSidebar/MiniSidebar";
+import { useEffect, useState } from "react";
 
 export default function MainHeader() {
   const { logo, menu, actions } = HeaderData;
+  const [isScrolled, setIsScrolled] = useState(false)
+  useEffect(()=>{
+    const handleScroll = ()=>{
+      if(window.scrollY > 0){
+        setIsScrolled(true)
+      } else{
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [])
 
   return (
-    <header className="">
-      <nav className="container flex justify-between items-center">
-        <Link className="logo" href={'/'}>
-          <img src={logo} alt="Luxe By Dnbl Logo" />
+    <header className={`fixed ${isScrolled ? "bg-white" : "bg-transparent"} z-50 w-full`}>
+      <nav className="container  flex justify-between items-center ">
+        <Link className="logo  translate-x-[-60px]" href={'/'}>
+          <img src={logo} alt="Luxe By Dnbl Logo" className=""/>
         </Link>
         <div className="hidden md:flex gap-4 items-center">
           {menu?.map((item, key) => (

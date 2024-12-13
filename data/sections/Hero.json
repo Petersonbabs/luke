@@ -1,0 +1,35 @@
+{
+    "action": {
+        "content" : "Start Shopping",
+        "href": "/products"
+    },
+    "slides": [
+        {
+            "label": "slide 1",
+            "background_img": "/illustrations/man-sitting-transparent.png",
+            "topTexts" : {
+                "heading" : "Bringing the Nigerian Diaspora Together with Style and Pride",
+                "subHeading" : "Celebrate Your Heritage in Style with quality products."
+            },
+            "bottomText" : " Embrace sophistication and elegance."
+        },
+        {
+            "label": "slide 2",
+            "background_img": "/illustrations/lady-looking-transparent.png",
+            "topTexts" : {
+                "heading" : "Threads of Tradition, Woven for You",
+                "subHeading" : "Celebrate Your Heritage in Style with quality products."
+            },
+            "bottomText" : " Embrace sophistication and elegance."
+        },
+        {
+            "label": "slide 3",
+            "background_img": "/illustrations/lady-in-yellow-transparent.png",
+            "topTexts" : {
+                "heading" : "Heritage in Every Stitch",
+                "subHeading" : "Global Trends, Nigerian Essence."
+            },
+            "bottomText" : " Embrace sophistication and elegance."
+        }
+    ]
+}

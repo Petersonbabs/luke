@@ -1,9 +1,16 @@
-'use client'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import React, { useState } from 'react'
+'use client';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import React, { useState } from 'react';
 
 const SheetUI = ({ trigger, content, title }) => {
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger>{trigger}</SheetTrigger>
@@ -11,10 +18,10 @@ const SheetUI = ({ trigger, content, title }) => {
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
         </SheetHeader>
-        {content}
+        {React.cloneElement(content, { setOpen: setIsOpen })}
       </SheetContent>
     </Sheet>
-  )
-}
+  );
+};
 
-export default SheetUI
+export default SheetUI;
