@@ -12,7 +12,7 @@ const CollectionsIndex = () => {
       <section className="container">
         <div className="header">
           <Tabs defaultValue="men">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 md:flex-row items-center justify-between">
               <h2 className="lbd-sub-text">
                 Unlock the Magic of Our Collection
               </h2>
@@ -22,7 +22,7 @@ const CollectionsIndex = () => {
               </TabsList>
             </div>
             <TabsContent value="men">
-                <section className="content grid md:grid-cols-2 lg:grid-cols-4">
+                <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
                     <div className="collection-img">
                         <Image src={KaftanImage} alt="Kaftan Image" width={100} height={100} />
                         <h2 className="collection-name">Kaftan</h2>
