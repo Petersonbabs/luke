@@ -29,7 +29,7 @@ export default function MainHeader() {
   return (
     <header className={`fixed ${isScrolled ? "bg-white" : "bg-transparent"} z-50 w-full`}>
       <nav className="container flex justify-between items-center ">
-        <Link className="logo  translate-x-[-60px]" href={'/'}>
+        <Link className="logo  translate-x-[-30px]" href={'/'}>
           <img src={logo} alt="Luxe By Dnbl Logo" className=""/>
         </Link>
         <div className="hidden md:flex gap-4 items-center">

@@ -3,6 +3,10 @@ import KaftanImage from "@/public/illustrations/kaftan.png"
 import ManCloth2 from "@/public/illustrations/cloth-2.png"
 import Trendy from "@/public/illustrations/trendy.png"
 import ManSitting from "@/public/illustrations/man-sitting-transparent.png"
+import boubou from "@/public/illustrations/boubou.png"
+import cloth1 from "@/public/illustrations/cloth-1.png"
+import ladyInYellow from "@/public/illustrations/lady-in-yellow-transparent.png"
+import LookingAway from "@/public/illustrations/lady-looking-transparent.png"
 import "./CollectionStyle.css";
 import Image from "next/image";
 
@@ -42,18 +46,22 @@ const CollectionsIndex = () => {
                 </section>
             </TabsContent>
             <TabsContent value="women">
-            <section className="content grid md:grid-cols-2 lg:grid-cols-3">
+            <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
                     <div className="collection-img">
-                        <Image src={KaftanImage} alt="Kaftan Image" width={100} height={100} />
+                        <Image src={boubou} alt="Kaftan Image" width={100} height={100} />
+                        <h2 className="collection-name">Boubou</h2>
+                    </div>
+                    <div className="collection-img">
+                        <Image src={cloth1} alt="Kaftan Image" width={100} height={100} />
+                        <h2 className="collection-name">Collection Title</h2>
+                    </div>
+                    <div className="collection-img">
+                        <Image src={ladyInYellow} alt="Kaftan Image" width={100} height={100} />
                         <h2 className="collection-name">Kaftan</h2>
                     </div>
                     <div className="collection-img">
-                        <Image src={KaftanImage} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Kaftan</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={KaftanImage} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Kaftan</h2>
+                        <Image src={LookingAway} alt="Kaftan Image" width={100} height={100} />
+                        <h2 className="collection-name">Lady Dress</h2>
                     </div>
                 </section>
             </TabsContent>
