@@ -1,10 +1,9 @@
+import CartPage from ".";
 
-const CartPage = () => {
-  return (
+export default function page(){
+  return(
     <div>
-      Cart Page
+      <CartPage />
     </div>
   )
 }
-
-export default CartPage

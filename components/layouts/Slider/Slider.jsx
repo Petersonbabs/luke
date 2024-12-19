@@ -2,17 +2,14 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import { CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  CarouselItem
 } from "@/components/ui/carousel";
 import Link from "next/link";
 
-export function AutoplayCarousel({ data, content }) {
+export function AutoplayCarousel({ data}) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );

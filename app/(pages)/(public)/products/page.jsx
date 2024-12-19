@@ -1,9 +1,12 @@
+import ProductsPageIndex from "."
 
-export default function ProductsPage() {
+
+const page = () => {
   return (
-    <div className="pt-[70px]">
-      Products
+    <div>
+      <ProductsPageIndex />
     </div>
   )
 }
 
+export default page

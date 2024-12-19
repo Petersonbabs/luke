@@ -1,10 +1,10 @@
+import ProfilePage from '.'
 
-const ProfilePage = () => {
+export default function page(){
   return (
     <div>
-      Profile Page
+      <ProfilePage />
     </div>
   )
 }
 
-export default ProfilePage

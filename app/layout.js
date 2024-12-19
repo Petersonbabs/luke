@@ -1,5 +1,6 @@
 import { Manjari } from "next/font/google";
 import "./globals.css";
+import "./styles/variables.css"
 
 // Configure Google font
 const manjari = Manjari({

@@ -10,7 +10,7 @@ const HeroContent = ()=>{
 
 const Hero = () => {
   return (
-    <section className="hero h-screen border">
+    <section className="hero h-screen">
       <AutoplayCarousel data={HeroData} content={<HeroContent />}/>
     </section>
   )

@@ -1,0 +1,49 @@
+.collection{
+    padding: 4rem 0;
+}
+
+.collection .content{
+    height: 300px;
+}
+
+.collection .content .collection-img{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    height: 100%;
+}
+
+.collection .content img{
+    height: 100%;
+    width: 90%;
+    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* top: 0; */
+    bottom: 0;
+    
+    object-fit: contain;
+    position: absolute;
+}
+
+.collection .content .collection-name{
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    font-size: 1.2rem;
+    /* mix-blend-mode: difference; */
+  /* color: white; */
+}
+
+.content .collection-img:nth-child(1){
+    background-color: var(--d1);
+}
+.content .collection-img:nth-child(2){
+    background-color: var(--d2);
+}
+.content .collection-img:nth-child(3){
+    background-color: var(--d3);
+}
+.content .collection-img:nth-child(4){
+    background-color: var(--d4);
+}

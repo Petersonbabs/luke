@@ -1,10 +1,9 @@
-import React from 'react'
+import ContactPageIndex from "."
+
 
 const ContactPage = () => {
   return (
-    <div className="pt-[70px]">
-      Contact US
-    </div>
+    <ContactPageIndex />
   )
 }
 
