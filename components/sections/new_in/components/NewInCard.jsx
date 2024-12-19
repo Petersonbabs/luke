@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 const NewInCard = ({ product, index }) => {
   return (
     <div className="">
-      <Card className="rounded-none pt-4 ">
+      <Card className="rounded-none pt-4 shadow-none border-none ">
         <CardContent className="relative">
             <button className="absolute right-6 top-2 font-thin">
                 <Heart />

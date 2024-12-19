@@ -115,3 +115,23 @@ body{
 .scrolled-product{
   margin-bottom: 1.3rem;
 }
+
+.btn{
+  padding: .7rem;
+  display: block;
+}
+
+.btn-full{
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.btn-d6{
+  background-color: var(--d6);
+  transition: all .3s ease;
+  &:hover{
+    background-color: var(--d7);
+  }
+}
+

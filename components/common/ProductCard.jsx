@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 const ProductCard = ({ product, index }) => {
   return (
     <div className="">
-      <Card className="rounded-none pt-4">
+      <Card className="rounded-none pt-4 shadow-none border-none w-[270px]">
         <CardContent className="relative">
             <button className="absolute right-6 top-2 font-thin">
                 <Heart />
@@ -20,7 +20,7 @@ const ProductCard = ({ product, index }) => {
           </div>
           <div className="content py-4">
             <h3 className="text-lg">{product?.name}</h3>
-            <div className="flex gap-8 justify-between  items-center">
+            <div className="flex-col gap-8 justify-between  items-center">
               <div>
                 <span className="text-gray-500 text-sm">{product?.category}</span>
               </div>
