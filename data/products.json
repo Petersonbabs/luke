@@ -1,0 +1,103 @@
+[
+    {
+      "id": 1,
+      "name": "Men's Agbada Set",
+      "description": "Elegant Agbada outfit with intricate embroidery, perfect for special occasions.",
+      "price": 90000,
+      "discountedPrice": 81000,
+      "category": "Men's Wear",
+      "stock": 15,
+      "imageUrl": "https://example.com/images/mens-agbada.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Ankara Maxi Dress",
+      "description": "Vibrant Ankara maxi dress with a modern twist, suitable for casual and formal events.",
+      "price": 56250,
+      "discountedPrice": 50625,
+      "category": "Women's Wear",
+      "stock": 20,
+      "imageUrl": "https://example.com/images/ankara-maxi-dress.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Dashiki Shirt",
+      "description": "Traditional Dashiki shirt made from premium fabric with colorful patterns.",
+      "price": 26250,
+      "discountedPrice": 23625,
+      "category": "Unisex",
+      "stock": 50,
+      "imageUrl": "https://example.com/images/dashiki-shirt.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Kente Scarf",
+      "description": "Handwoven Kente scarf with authentic Ghanaian patterns.",
+      "price": 18750,
+      "discountedPrice": 16875,
+      "category": "Accessories",
+      "stock": 100,
+      "imageUrl": "https://example.com/images/kente-scarf.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Beaded Necklace Set",
+      "description": "Traditional beaded necklace and bracelet set, handmade by local artisans.",
+      "price": 30000,
+      "discountedPrice": 27000,
+      "category": "Jewelry",
+      "stock": 30,
+      "imageUrl": "https://example.com/images/beaded-necklace.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Kaftan for Women",
+      "description": "Stylish and comfortable kaftan with elegant patterns and a loose fit.",
+      "price": 45000,
+      "discountedPrice": 40500,
+      "category": "Women's Wear",
+      "stock": 25,
+      "imageUrl": "https://example.com/images/womens-kaftan.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Buba and Sokoto",
+      "description": "Classic Buba and Sokoto set made with soft, breathable fabric.",
+      "price": 60000,
+      "discountedPrice": 54000,
+      "category": "Men's Wear",
+      "stock": 10,
+      "imageUrl": "https://example.com/images/buba-sokoto.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Ankara Tote Bag",
+      "description": "Eco-friendly tote bag made from vibrant Ankara fabric.",
+      "price": 22500,
+      "discountedPrice": 20250,
+      "category": "Accessories",
+      "stock": 40,
+      "imageUrl": "https://example.com/images/ankara-tote-bag.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Kids' Traditional Outfit",
+      "description": "Adorable kids' outfit featuring authentic African prints.",
+      "price": 37500,
+      "discountedPrice": 33750,
+      "category": "Kids' Wear",
+      "stock": 20,
+      "imageUrl": "https://example.com/images/kids-outfit.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Adire Fabric by the Yard",
+      "description": "Hand-dyed Adire fabric, sold by the yard for custom tailoring.",
+      "price": 11250,
+      "discountedPrice": 10125,
+      "category": "Fabrics",
+      "stock": 200,
+      "imageUrl": "https://example.com/images/adire-fabric.jpg"
+    }
+  ]
+  

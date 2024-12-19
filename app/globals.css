@@ -107,3 +107,11 @@ body{
  font-size: 24px; 
  line-height: 24px;
 }
+
+.scrolled-product::-webkit-scrollbar{
+  display: none;
+}
+
+.scrolled-product{
+  margin-bottom: 1.3rem;
+}
