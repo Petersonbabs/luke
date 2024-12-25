@@ -135,3 +135,13 @@ body{
   }
 }
 
+
+.black-btn{
+  background-color: black;
+  color: white;
+  &:hover{
+    background-color: #333 !important;
+  }
+}
+
+
