@@ -1,7 +1,9 @@
-import { Button } from "@/components/ui/button"
 import CartData from "@/data/cart.json";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const OrderSummary = () => {
+    
   return (
     <section className="border rounded p-4 h-fit sticky top-16 flex-[.8]">
         <h3 className="text-2xl mb-4">Order Summary</h3>
@@ -19,7 +21,7 @@ const OrderSummary = () => {
                 <span>₦{CartData?.totalPrice.toLocaleString()}</span>
             </li>
         </ul>
-        <Button className="btn btn-full black-btn">Checkout</Button>
+        <Link href={'/checkout'} className="justify-center py-4 btn-full black-btn rounded text-center flex items-center gap-4" ><span>Checkout</span> <ArrowRight /></Link>
     </section>
   )
 }

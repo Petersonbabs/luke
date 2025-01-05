@@ -1,10 +1,10 @@
 import { ImageIcon, Trash } from "lucide-react";
 import Image from "next/image";
 
-const CartCard = ({ item }) => {
+const CartCard = ({ item, custom }) => {
   return (
     <div className="flex p-4 gap-4 items-center flex-wrap w-full  rounded-md border">
-      <div className="left w-[30%] bg-d9">
+      <div className="left w-[30%] bg-d9 flex justify-center items-center">
         {item.image ? (
           <Image
             src={item.image}
@@ -35,7 +35,7 @@ const CartCard = ({ item }) => {
             </span>
           </div>
         </div>
-        <div>
+        <div className={custom}>
           <div className="flex justify-between items-center mt-4">
             <Trash size={16} />
             <div className="flex gap-4 bg-white py-2 px-4 items-center">
