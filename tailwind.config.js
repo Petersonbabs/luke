@@ -13,6 +13,7 @@ module.exports = {
 				d4: 'var(--d4)',
 				d6: 'var(--d6)',
 				d8: 'var(--d8)',
+				d9: 'var(--d9)',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -90,6 +91,9 @@ module.exports = {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontFamily: {
+				syne: "'Syne', serif"
 			}
 		}
 	},

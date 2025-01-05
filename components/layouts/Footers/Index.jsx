@@ -6,14 +6,14 @@ const FooterIndex = () => {
   const { logo } = HeaderData;
   return (
     <footer className="pt-16 pb-12">
-      <section className="container flex flex-col gap-4 items-center sm:flex-row sm:items-start justify-between">
-        <section>
-          <Link className="logo block translate-x-[-30px]" href={"/"}>
+      <section className="container flex flex-col gap-4 sm:flex-row sm:items-start justify-between">
+        <section >
+          <Link className="logo block " href={"/"}>
             <img src={logo} alt="Luxe By Dnbl Logo" className="" />
           </Link>
           <h3 className="text-2xl">Newsletter</h3>
           <p>stay in touch with latest updates from DNBL.</p>
-          <form className="flex items-center gap-4 mt-4">
+          <form className="flex items-center gap-2 sm:gap-4 mt-4 flex-wrap">
             <input
               type="email"
               name="email"
@@ -21,14 +21,14 @@ const FooterIndex = () => {
               placeholder="Email Address"
               className="h-full p-3 block border"
             />
-            <button className="btn bg-black text-white">Subscribe</button>
+            <button className="btn bg-black text-white block">Subscribe</button>
           </form>
         </section>
 
         {/* important links */}
-        <section className="space-y-4">
+        <section className="space-y-4 sm:text-end">
             <h3 className="text-2xl">Important Links</h3>
-          <ul className="text-end space-y-3 ">
+          <ul className="space-y-3 ">
             <li>
               <Link href={"/about"}>About Us</Link>
             </li>

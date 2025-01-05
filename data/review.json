@@ -1,0 +1,45 @@
+{
+    "reviews": [
+      {
+        "reviewId": 1,
+        "productId": "P12345",
+        "userName": "JaneDoe",
+        "rating": 4.5,
+        "reviewText": "The product quality is amazing! It arrived on time and was exactly as described.",
+        "date": "2025-01-02",
+        "likes": 12,
+        "dislikes": 2
+      },
+      {
+        "reviewId": 2,
+        "productId": "P12345",
+        "userName": "JohnSmith",
+        "rating": 3.0,
+        "reviewText": "The product is okay, but the delivery took longer than expected.",
+        "date": "2025-01-01",
+        "likes": 5,
+        "dislikes": 3
+      },
+      {
+        "reviewId": 3,
+        "productId": "P67890",
+        "userName": "SarahLee",
+        "rating": 5.0,
+        "reviewText": "Absolutely love this! Highly recommend to everyone.",
+        "date": "2024-12-30",
+        "likes": 20,
+        "dislikes": 0
+      },
+      {
+        "reviewId": 4,
+        "productId": "P67890",
+        "userName": "MikeBrown",
+        "rating": 2.5,
+        "reviewText": "Not satisfied with the quality. It did not meet my expectations.",
+        "date": "2024-12-29",
+        "likes": 3,
+        "dislikes": 10
+      }
+    ]
+  }
+  

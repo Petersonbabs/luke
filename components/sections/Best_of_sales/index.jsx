@@ -1,5 +1,6 @@
 import ProductsData from "@/data/products.json"
 import ProductCard from "@/components/common/ProductCard"
+import Link from "next/link"
 
 const BestOfSalesIndex = ({title}) => {
   return (
@@ -8,9 +9,9 @@ const BestOfSalesIndex = ({title}) => {
       <section className="flex overflow-x-scroll scrolled-product">
         {ProductsData.slice(0, 5).map((product, index) => (
           <section key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
+            <Link href={`/products/${product.id}`} className="p-1">
               <ProductCard index={index} product={product}/>
-            </div>
+            </Link>
           </section>
         ))}
       </section>

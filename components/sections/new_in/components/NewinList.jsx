@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import NewInCard from "./NewInCard"
+import Link from "next/link"
 
 export default function NewinList() {
   return (
@@ -21,9 +22,9 @@ export default function NewinList() {
       <CarouselContent>
         {ProductsData.slice(0, 5).map((product, index) => (
           <CarouselItem key={index} className=" md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
+            <Link href={`/products/${product.id}`} className="p-1">
               <NewInCard index={index} product={product}/>
-            </div>
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>

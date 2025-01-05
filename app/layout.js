@@ -1,6 +1,8 @@
-import { Manjari } from "next/font/google";
+import { Manjari, Syne } from "next/font/google";
 import "./globals.css";
 import "./styles/variables.css"
+import AuthProvider from "@/context/AuthContext";
+import ProductsProvider from "@/context/ProductContext";
 
 // Configure Google font
 const manjari = Manjari({
@@ -19,7 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased ${manjari.className}`}>
-        <section >{children}</section>
+        <AuthProvider>
+          <ProductsProvider>
+            <section >{children}</section>
+          </ProductsProvider>
+        </AuthProvider>
       </body>
     </html>
   );

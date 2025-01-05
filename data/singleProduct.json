@@ -1,0 +1,12 @@
+{
+    "id": "001",
+    "name": "Ankara Fabric - Vibrant Patterns",
+    "mainImage": "/illustrations/cloth-1.png",
+    "firstImage": "/illustrations/cloth-2.png",
+    "thirdImage": "/illustrations/cloth-1.png",
+    "secondImage": "/illustrations/cloth-3.png",
+    "description": "Beautiful, high-quality Ankara fabric with vibrant African patterns, perfect for creating stunning outfits.",
+    "quantity": 1,
+    "price": 2500,
+    "currency": "₦"
+}
