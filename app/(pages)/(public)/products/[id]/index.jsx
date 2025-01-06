@@ -1,15 +1,16 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import useSingleProduct from "./hook/useSingleProduct";
-import { Heart } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import "./singleproduct.css";
 import BestOfSalesList from "@/components/sections/Best_of_sales/BestList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewsList from "@/app/_features/_reviews/components/ReviewsList";
 
 const SingleProductIndex = () => {
-  const { singleProduct } = useSingleProduct();
-  console.log(singleProduct);
+  const { singleProduct, handleSelectSize, formData, loading } = useSingleProduct();
+  
+
   return (
     <section className="pt-[70px]">
       <section className="container">
@@ -51,20 +52,38 @@ const SingleProductIndex = () => {
             <div className="size">
               <span>Size</span>
               <div className="flex gap-4">
-                <button>S</button>
-                <button>M</button>
-                <button>L</button>
-                <button>XL</button>
+                <button 
+                onClick={()=>{handleSelectSize("s")}} 
+                className={`${formData.size == "s" && "bg-d4 border-none"} border`}>S</button>
+                <button 
+                onClick={()=>{handleSelectSize("m")}} 
+                className={`${formData.size == "m" && "bg-d4 border-none"} border`}>M</button>
+                <button 
+                onClick={()=>{handleSelectSize("L")}}
+                className={`${formData.size == "L" && "bg-d4 border-none"} border`}
+                >L</button>
+                <button 
+                onClick={()=>{handleSelectSize("XL")}}
+                className={`${formData.size == "XL" && "bg-d4 border-none"} border`}
+                >XL</button>
               </div>
             </div>
             <div>
               <span>Specify your size</span>
-              <Input />
+              <Input onChange={(e)=>{
+                handleSelectSize(e.target.value)
+              }}/>
             </div>
 
             {/* actions */}
             <section className="flex gap-4 items-center justify-start ">
-              <button className="btn btn-full btn-green ">Add to bag</button>
+              <button className="btn btn-full btn-green " disabled={loading}>
+                {
+                  !loading ?
+                  <span>Add to Bag</span> :
+                  <Loader2 className="animate-spin m-auto"/>
+                }
+              </button>
               <div className="wishlist-btn">
                 <Heart className="size-4" />
               </div>
