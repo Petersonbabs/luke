@@ -8,8 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewsList from "@/app/_features/_reviews/components/ReviewsList";
 
 const SingleProductIndex = () => {
-  const { singleProduct, handleSelectSize, formData, loading } = useSingleProduct();
-  
+  const { singleProduct, handleSelectSize, formData, loading } =
+    useSingleProduct();
 
   return (
     <section className="pt-[70px]">
@@ -52,40 +52,72 @@ const SingleProductIndex = () => {
             <div className="size">
               <span>Size</span>
               <div className="flex gap-4">
-                <button 
-                onClick={()=>{handleSelectSize("s")}} 
-                className={`${formData.size == "s" && "bg-d4 border-none"} border`}>S</button>
-                <button 
-                onClick={()=>{handleSelectSize("m")}} 
-                className={`${formData.size == "m" && "bg-d4 border-none"} border`}>M</button>
-                <button 
-                onClick={()=>{handleSelectSize("L")}}
-                className={`${formData.size == "L" && "bg-d4 border-none"} border`}
-                >L</button>
-                <button 
-                onClick={()=>{handleSelectSize("XL")}}
-                className={`${formData.size == "XL" && "bg-d4 border-none"} border`}
-                >XL</button>
+                <button
+                  onClick={() => {
+                    handleSelectSize("s");
+                  }}
+                  className={`${
+                    formData.size == "s" && "bg-d4 border-none"
+                  } border`}
+                >
+                  S
+                </button>
+                <button
+                  onClick={() => {
+                    handleSelectSize("m");
+                  }}
+                  className={`${
+                    formData.size == "m" && "bg-d4 border-none"
+                  } border`}
+                >
+                  M
+                </button>
+                <button
+                  onClick={() => {
+                    handleSelectSize("L");
+                  }}
+                  className={`${
+                    formData.size == "L" && "bg-d4 border-none"
+                  } border`}
+                >
+                  L
+                </button>
+                <button
+                  onClick={() => {
+                    handleSelectSize("XL");
+                  }}
+                  className={`${
+                    formData.size == "XL" && "bg-d4 border-none"
+                  } border`}
+                >
+                  XL
+                </button>
               </div>
             </div>
             <div>
               <span>Specify your size</span>
-              <Input onChange={(e)=>{
-                handleSelectSize(e.target.value)
-              }}/>
+              <Input
+                onChange={(e) => {
+                  handleSelectSize(e.target.value);
+                }}
+              />
             </div>
 
             {/* actions */}
             <section className="flex gap-4 items-center justify-start ">
               <button className="btn btn-full btn-green " disabled={loading}>
-                {
-                  !loading ?
-                  <span>Add to Bag</span> :
-                  <Loader2 className="animate-spin m-auto"/>
-                }
+                {!loading ? (
+                  <span>Add to Bag</span>
+                ) : (
+                  <Loader2 className="animate-spin m-auto" />
+                )}
               </button>
               <div className="wishlist-btn">
-                <Heart className="size-4" />
+                {!loading ? (
+                  <Heart className="size-4" />
+                ) : (
+                  <Loader2 className="animate-spin m-auto" />
+                )}
               </div>
             </section>
           </section>
@@ -102,9 +134,7 @@ const SingleProductIndex = () => {
             <TabsContent value="reviews">
               <ReviewsList />
             </TabsContent>
-            <TabsContent value="description">
-
-            </TabsContent>
+            <TabsContent value="description"></TabsContent>
           </Tabs>
         </section>
         {/* END OF REVIEWS & DESCRIPTION */}

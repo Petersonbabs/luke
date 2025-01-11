@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 
 const useSingleProduct = () => {
   const { getSingleProduct, singleProduct } = useProductsContext();
-  const loading = true
+  const loading = false
   const { id } = useParams();
   const [ formData, setFormData ] = useState({
     id,
-    size: "s",
+    size: "m",
     color: ""
   });
   useEffect(() => {

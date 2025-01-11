@@ -1,11 +1,15 @@
+"use client"
 import Link from "next/link";
 import HeaderData from "@/data/layouts/mainheader";
 import "../Headers/HeaderStyle.css"
+import { usePathname } from "next/navigation";
 
 const FooterIndex = () => {
   const { logo } = HeaderData;
+  const profilePage = usePathname() == "/profile"
+
   return (
-    <footer className="pt-16 pb-12">
+    <footer className={`pt-16 pb-12 ${profilePage ? "hidden" : ""}`}>
       <section className="container flex flex-col gap-4 sm:flex-row sm:items-start justify-between">
         <section >
           <Link className="logo block " href={"/"}>

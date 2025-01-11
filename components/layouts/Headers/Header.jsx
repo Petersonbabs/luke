@@ -35,7 +35,7 @@ export default function MainHeader() {
         isScrolled ? "bg-white" : "bg-transparent"
       } z-50 w-full`}
     >
-      <nav className="container flex justify-between items-center ">
+      <nav className="container flex justify-between items-center z-50">
         <Link className="logo  translate-x-[-30px]" href={"/"}>
           <img src={logo} alt="Luxe By Dnbl Logo" className="" />
         </Link>
@@ -66,7 +66,7 @@ export default function MainHeader() {
             </span>
           </Link>
 
-          {user ? (
+          {!user ? (
             <>
               <DropdownMenu>
                 <DropdownMenuTrigger>
