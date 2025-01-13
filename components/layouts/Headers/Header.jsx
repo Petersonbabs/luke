@@ -77,7 +77,7 @@ export default function MainHeader() {
                     <Link href={'/login'} className="m-auto">Login</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="hover:bg-black hover:text-white w-full text-center ">
-                    <Link href={'/signup'} className="m-auto">Singup</Link>
+                    <Link href={'/signup'} className="m-auto">Signup</Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
