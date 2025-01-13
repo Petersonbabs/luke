@@ -3,7 +3,6 @@ import Ibukun from "@/public/illustrations/Olamide_Gabriel.png";
 import Michael from "@/public/illustrations/Michael_Oparachi.png";
 import Aisha from "@/public/illustrations/Aisha_Abubakar.png";
 import Image from "next/image";
-import { MessageCircle } from "lucide-react";
 
 export default function AboutPageComponent() {
   return (

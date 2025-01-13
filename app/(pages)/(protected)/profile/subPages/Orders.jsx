@@ -1,3 +1,4 @@
+import OrderList from '@/app/_features/_order/components/OrderList'
 import { BookText, CircleSlash2 } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
@@ -5,15 +6,17 @@ import React from 'react'
 const Orders = () => {
   return (
     <section>
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-4 mb-8'>
         <BookText />
         <h2 className='lbd-sub-text'>My Orders</h2>
       </div>
 
       <section>
         {
-          [].length !== 0 ?
-          <></> :
+          [].length == 0 ?
+          <>
+            <OrderList />
+          </> :
           <section className='max-w-[600px] m-auto my-8'>
             <div className='flex flex-col items-center gap-4'>
               <CircleSlash2 className='size-24'/>

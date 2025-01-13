@@ -1,0 +1,44 @@
+{
+    "total": 3,
+    "deliveryFee": 2000,
+    "subTotal": 47500,
+    "totalPrice": 49500,
+    "items": [
+        {
+            "id": "001",
+            "title": "Ankara Fabric - Vibrant Patterns",
+            "image": "/illustrations/cloth-1.png",
+            "description": "Beautiful, high-quality Ankara fabric with vibrant African patterns, perfect for creating stunning outfits.",
+            "quantity": 1,
+            "price": 2500,
+            "currency": "₦",
+            "category": "Fabric",
+            "color": "Blue",
+            "size": "M"
+        },
+        {
+            "id": "002",
+            "title": "Kente Stole - Handwoven",
+            "image": "/illustrations/cloth-2.png",
+            "description": "Authentic handwoven Kente stole, crafted with bold colors and traditional African designs.",
+            "quantity": 5,
+            "price": 30000,
+            "currency": "₦",
+            "category": "Accessory",
+            "color": "Red",
+            "size": "S"
+        },
+        {
+            "id": "003",
+            "title": "Beaded Jewelry Set",
+            "image": "/illustrations/cloth-3.png",
+            "description": "Elegant African-inspired beaded necklace and bracelet set, perfect for adding cultural flair to any outfit.",
+            "quantity": 1,
+            "price": 15000,
+            "currency": "₦",
+            "category": "Jewelry",
+            "color": "Gold",
+            "size": "XL"
+        }
+    ]
+}

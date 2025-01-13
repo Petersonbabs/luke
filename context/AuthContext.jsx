@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation";
 import React, { createContext, useState, useContext } from "react";
 
 const AuthContext = createContext();
@@ -6,11 +7,13 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); 
   const [loadingAuth, setLoadingAuth] = useState(false)
+  const navigate = useRouter()
 
   const login = (data) => {
     console.log("Login data:", data);
     setUser(data);
     localStorage.setItem("user", JSON.stringify(data))
+    navigate.push("/profile")
   };
 
   const signup = (data) => {
