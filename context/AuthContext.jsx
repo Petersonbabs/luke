@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
   const login = (data) => {
     console.log("Login data:", data);
     setUser(data);
+    localStorage.setItem("user", JSON.stringify(data))
   };
 
   const signup = (data) => {
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
     user,
     loadingAuth,
     login,
-    signup
+    signup  
   }
 
   return (
