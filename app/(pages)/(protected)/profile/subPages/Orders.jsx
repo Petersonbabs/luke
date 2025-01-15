@@ -16,7 +16,7 @@ const Orders = () => {
           [].length == 0 ?
           <>
             <OrderList />
-          </> :
+          </> : 
           <section className='max-w-[600px] m-auto my-8'>
             <div className='flex flex-col items-center gap-4'>
               <CircleSlash2 className='size-24'/>
