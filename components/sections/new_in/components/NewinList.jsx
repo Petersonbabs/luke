@@ -1,5 +1,4 @@
-import * as React from "react"
-
+'use client'
 import ProductsData from "@/data/products.json"
 import {
   Carousel,
@@ -10,8 +9,14 @@ import {
 } from "@/components/ui/carousel"
 import NewInCard from "./NewInCard"
 import Link from "next/link"
+import { useProductsContext } from "@/context/ProductContext"
+import { useEffect } from "react"
 
 export default function NewinList() {
+  const {getAllNewIn} = useProductsContext()
+  useEffect(()=>{
+    getAllNewIn()
+  },[])
   return (
     <Carousel
       opts={{

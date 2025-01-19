@@ -3,6 +3,8 @@ import "./globals.css";
 import "./styles/variables.css"
 import AuthProvider from "@/context/AuthContext";
 import ProductsProvider from "@/context/ProductContext";
+import { Toaster } from "sonner";
+import CartProvider from "@/context/CartContext";
 
 // Configure Google font
 const manjari = Manjari({
@@ -23,7 +25,10 @@ export default function RootLayout({ children }) {
       <body className={`antialiased ${manjari.className}`}>
         <AuthProvider>
           <ProductsProvider>
-            <section >{children}</section>
+            <CartProvider>
+              <Toaster position="bottom-right" richColors closeButton />
+              <section >{children}</section>
+            </CartProvider>
           </ProductsProvider>
         </AuthProvider>
       </body>

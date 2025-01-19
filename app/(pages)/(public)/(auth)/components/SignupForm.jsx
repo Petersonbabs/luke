@@ -94,7 +94,7 @@ export function SignupForm({ className, ...props }) {
                 {
                   loadingAuth ?
                   <Loader2 className="animate-spin m-auto"/> :
-                  <span>Login</span>
+                  <span>Signup</span>
                 }
               </Button>
             </div>

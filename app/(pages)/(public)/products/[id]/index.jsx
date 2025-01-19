@@ -8,90 +8,106 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewsList from "@/app/_features/_reviews/components/ReviewsList";
 
 const SingleProductIndex = () => {
-  const { singleProduct, handleSelectSize, formData, loading } =
-    useSingleProduct();
+  const {
+    singleProduct,
+    handleSelectSize,
+    formData,
+    loading,
+    selectedColor,
+    selectedImage,
+    colors,
+    handleImageClick,
+    addingToCart,
+    handleAddToCart
+  } = useSingleProduct();
+
+  
 
   return (
     <section className="pt-[70px]">
       <section className="container">
         {/* PRODUCT OVERVIEW */}
-        <section className="grid gap-4 md:grid-cols-2">
+        <section className="grid gap-6 md:grid-cols-2">
+          {/* Left Section */}
           <section className="left grid gap-4">
-            <div className="big-image ">
+            {/* Big Image */}
+            <div className="big-image w-full border ">
               <img
-                src={singleProduct?.mainImage}
-                alt={singleProduct?.name + " main image"}
+                src={selectedImage}
+                alt={singleProduct?.name + " selected image"}
+                className="w-full h-auto"
               />
             </div>
-            <div className="small-images flex gap-4">
-              <div>
-                <img
-                  src={singleProduct?.firstImage}
-                  alt={singleProduct?.name + " image"}
-                />
-              </div>
-              <div>
-                <img
-                  src={singleProduct?.secondImage}
-                  alt={singleProduct?.name + " image"}
-                />
-              </div>
-              <div>
-                <img
-                  src={singleProduct?.thirdImage}
-                  alt={singleProduct?.name + " image"}
-                />
-              </div>
+
+            {/* Small Images */}
+            <div className="small-images flex gap-4 overflow-x-auto">
+              {[
+                singleProduct?.mainImage,
+                singleProduct?.firstImage,
+                singleProduct?.secondImage,
+                singleProduct?.thirdImage,
+              ].map((image, index) => (
+                <div
+                  key={index}
+                  className={`cursor-pointer border-2 ${
+                    selectedImage === image
+                      ? "border-blue-500"
+                      : "border-gray-300"
+                  } rounded`}
+                  onClick={() => handleImageClick(image)}
+                >
+                  <img
+                    src={image}
+                    alt={`${singleProduct?.name} thumbnail ${index + 1}`}
+                    className="w-16 h-16 object-cover"
+                  />
+                </div>
+              ))}
             </div>
           </section>
+
+          {/* Right Section */}
           <section className="right space-y-6 py-4">
             <h2 className="text-2xl">{singleProduct?.name}</h2>
             <span className="text-2xl">
               ₦{singleProduct?.price.toLocaleString()}
             </span>
+            <div>
+              <span>Color - {selectedColor}</span>
+              <div className="flex gap-4 my-2">
+                {colors?.map((color, key) => (
+                  <div
+                    key={key}
+                    className={`border w-12 h-12 flex items-center justify-center bg-${
+                      color.color
+                    }-500  cursor-pointer p-2 ${
+                      selectedImage == color.image
+                        ? "border border-blue-500"
+                        : "border-gray-300"
+                    }`}
+                    onClick={() => {
+                      handleImageClick(color.image,color.color);
+                    }}
+                  >
+                    {color.color}
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="size">
               <span>Size</span>
               <div className="flex gap-4">
-                <button
-                  onClick={() => {
-                    handleSelectSize("s");
-                  }}
-                  className={`${
-                    formData.size == "s" && "bg-d4 border-none"
-                  } border`}
-                >
-                  S
-                </button>
-                <button
-                  onClick={() => {
-                    handleSelectSize("m");
-                  }}
-                  className={`${
-                    formData.size == "m" && "bg-d4 border-none"
-                  } border`}
-                >
-                  M
-                </button>
-                <button
-                  onClick={() => {
-                    handleSelectSize("L");
-                  }}
-                  className={`${
-                    formData.size == "L" && "bg-d4 border-none"
-                  } border`}
-                >
-                  L
-                </button>
-                <button
-                  onClick={() => {
-                    handleSelectSize("XL");
-                  }}
-                  className={`${
-                    formData.size == "XL" && "bg-d4 border-none"
-                  } border`}
-                >
-                  XL
-                </button>
+                {["sm", "md", "lg", "Xl"].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => handleSelectSize(size)}
+                    className={`${
+                      formData.items[0].size === size && "bg-d4 border-none"
+                    } border`}
+                  >
+                    {size}
+                  </button>
+                ))}
               </div>
             </div>
             <div>
@@ -103,10 +119,10 @@ const SingleProductIndex = () => {
               />
             </div>
 
-            {/* actions */}
-            <section className="flex gap-4 items-center justify-start ">
-              <button className="btn btn-full btn-green " disabled={loading}>
-                {!loading ? (
+            {/* Actions */}
+            <section className="flex gap-4 items-center justify-start">
+              <button className="btn btn-full btn-green" disabled={addingToCart} onClick={handleAddToCart}>
+                {!addingToCart ? (
                   <span>Add to Bag</span>
                 ) : (
                   <Loader2 className="animate-spin m-auto" />
@@ -134,7 +150,9 @@ const SingleProductIndex = () => {
             <TabsContent value="reviews">
               <ReviewsList />
             </TabsContent>
-            <TabsContent value="description"></TabsContent>
+            <TabsContent value="description">
+              <p>{singleProduct?.description}</p>
+            </TabsContent>
           </Tabs>
         </section>
         {/* END OF REVIEWS & DESCRIPTION */}

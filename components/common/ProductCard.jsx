@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import cloth1 from "@/public/illustrations/cloth-1.png";
@@ -26,9 +27,9 @@ const ProductCard = ({ product, index }) => {
               </div>
               <div className="space-x-3">
                 <span className="line-through text-gray-600 text-sm decoration-red-500">
-                  ₦{product?.price.toLocaleString()}
+                  ₦{product?.price?.toLocaleString()}
                 </span>
-                <span>₦{product?.discountedPrice.toLocaleString()}</span>
+                <span>₦{product?.discountedPrice?.toLocaleString()}</span>
               </div>
             </div>
           </div>

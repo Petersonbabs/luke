@@ -8,9 +8,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Orders from "./subPages/Orders";
 import PaymentMethod from "./subPages/PaymentMethod";
-import { BookText, ChartNoAxesGantt, ChevronDown, CreditCard } from "lucide-react";
+import { BookText, ChartNoAxesGantt, ChevronDown, CreditCard, Upload } from "lucide-react";
+import withAuthProtection, { withPermission } from "@/app/_features/_authentication/AuthChecker";
+import { useAuthContext } from "@/context/AuthContext";
 
-const ProfilePageIndex = ({ toRender, shufflePage }) => {
+const ProfilePageIndex = ({ toRender, shufflePage, checkPermission }) => {
+  const {signOut} = useAuthContext()
   const menuList = [{ name: "My Orders", icon: <BookText /> }, { name: "Payment Method",  icon: <CreditCard/>  }];
   const toRenderComponents = [<Orders />, <PaymentMethod />];
 
@@ -26,13 +29,20 @@ const ProfilePageIndex = ({ toRender, shufflePage }) => {
           {menuList.map((item, index) => (
             <DropdownMenuItem className={`hover:bg-black flex items-center rounded-none hover:text-white h-8 text-[16px] mb-2 cursor-pointer ${toRender == index && "bg-black text-white transition-all"}`}
             onClick={() => {
-              shufflePage(index);
+              checkPermission(shufflePage, index);
             }}
             >
               {item.icon}
               <span>{item.name}</span>
             </DropdownMenuItem>
           ))}
+          <DropdownMenuItem className={`hover:bg-black flex items-center rounded-none hover:text-white h-8 text-[16px] mb-2 cursor-pointer `}
+            onClick={() => {
+              signOut()
+            }}>
+              <Upload className="rotate-[-90deg]" />
+              <span>SignOut</span>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       {toRenderComponents[toRender]}
@@ -40,4 +50,4 @@ const ProfilePageIndex = ({ toRender, shufflePage }) => {
   );
 };
 
-export default ProfilePageIndex;
+export default withAuthProtection(ProfilePageIndex);

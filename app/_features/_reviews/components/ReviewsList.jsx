@@ -11,8 +11,8 @@ export default function ReviewsList() {
   return (
     <section className="flex flex-col gap-4 md:flex-row justify-between">
       <section>
-        {ReviewsData.reviews.map((review) => (
-          <ReviewCard review={review} />
+        {ReviewsData.reviews.map((review, key) => (
+          <ReviewCard review={review} key={key}/>
         ))}
       </section>
       {/* POST REVIEW */}
