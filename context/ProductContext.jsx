@@ -1,15 +1,83 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
   const [loadingProducts, setLoadingProducts] = useState(false);
+  const [loadingAppeal, setLoadingAppeal] = useState(false);
+  const [isSorting, setIsSorting] = useState(false);
   const [singleProduct, setSingleProduct] = useState();
+  const [allProducts, setAllProducts] = useState();
   const [bestSales, setBestSales] = useState();
   const [popular, setPopular] = useState();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  // GET ALL PRODUCTS
+  const getAllProducts = async () => {
+    setLoadingProducts(true)
+    console.log('All products loading...');
+    try {
+      const response = await axios(`${baseUrl}/all/product`);
+      const data = response.data
+      setAllProducts(data)
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally{
+      setLoadingProducts(false)
+      console.log('FETCH PRODUCTS DONE!...');
+    }
+  };
+
+  // GET BY APPEAL (MEN, WOMEN)
+  const getByAppeal = async (appeal) => {
+    setLoadingAppeal(true)
+    console.log('Appeal products loading...');
+    try {
+      const response = await axios(`${baseUrl}/product/appeal/${appeal}`);
+      const data = response.data
+      setAllProducts(data)
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally{
+      setLoadingAppeal(false)
+    }
+  };
+
+  // GET LATEST PRODUCTS IN A CATEGORY
+  const getCategoryLatestProducts = async(category)=>{
+    setIsSorting(true)
+    try {
+      const response = await axios(`${baseUrl}/product/category/latest/${category}`)
+      const data = response.data
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }finally {
+      setIsSorting(false)
+    }
+  }
+
+   // GET LATEST PRODUCTS IN A CATEGORY
+   const getProductsByCategory = async(category)=>{
+    setIsSorting(true)
+    try {
+      const response = await axios(`${baseUrl}/product/category/${category}`)
+      const data = response.data
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }finally {
+      setIsSorting(false)
+    }
+  }
+
+  useEffect(()=>{
+    // getByAppeal()
+  },[])
 
   // GET ALL NEW IN
   const getAllNewIn = async () => {
@@ -46,8 +114,6 @@ const ProductsProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/popular`)
       const data = response.data
       setPopular(data)
-      console.log(data);
-
     } catch (error) {
       console.log(error)
     } finally {
@@ -66,15 +132,36 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
+  // SORT PRODUCT BY CATEGORY ORDER (ASCEND / DESCEND)
+  const sortCategoryOrder = async(order, category)=>{
+    setIsSorting(true)
+    try {
+      const response = await axios(`${baseUrl}/product/category/${order}/${category}`)
+      const data = response.data
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }finally {
+      setIsSorting(false)
+    }
+  }
+
   const value = {
     loadingProducts,
     singleProduct,
     bestSales,
+    popular,
+    isSorting,
+    loadingAppeal,
+    getAllProducts,
+    getByAppeal,
+    sortCategoryOrder,
     getSingleProduct,
     getAllNewIn,
     getBestSales,
     getAllPopular,
-    popular
+    getCategoryLatestProducts,
+    getProductsByCategory
   };
 
   return (

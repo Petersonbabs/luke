@@ -5,6 +5,9 @@ import AuthProvider from "@/context/AuthContext";
 import ProductsProvider from "@/context/ProductContext";
 import { Toaster } from "sonner";
 import CartProvider from "@/context/CartContext";
+import OrderProvider from "@/context/OrderContext";
+import ReviewProvider from "@/context/ReviewContext";
+import WishListProvider from "@/context/WishListContext";
 
 // Configure Google font
 const manjari = Manjari({
@@ -26,8 +29,14 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <ProductsProvider>
             <CartProvider>
-              <Toaster position="bottom-right" richColors closeButton />
-              <section >{children}</section>
+              <OrderProvider>
+                <ReviewProvider>
+                  <WishListProvider>
+                    <Toaster position="bottom-right" richColors closeButton />
+                    <section >{children}</section>
+                  </WishListProvider>
+                </ReviewProvider>
+              </OrderProvider>
             </CartProvider>
           </ProductsProvider>
         </AuthProvider>

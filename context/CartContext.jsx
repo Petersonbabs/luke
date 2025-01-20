@@ -17,6 +17,7 @@ export const useCartContext = ()=>{
 const CartProvider = ({children})=>{
     const [cartItems, setCartItems] = useState()
     const [addingToCart, setAddingToCart] = useState(false)
+    const [loadingCart, setLoadingCart] = useState(false)
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const {user} = useAuthContext()
 
@@ -36,10 +37,74 @@ const CartProvider = ({children})=>{
             setAddingToCart(false)
         }
     })
+
+    // GET USER CART
+    const getUserCart = withPermission(async()=>{
+        setLoadingCart(true)
+        try {
+            const response = await axios(`${baseUrl}/cart/${user.id}`)
+            const data = response.data
+            setCartItems(data)
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }finally {
+            setLoadingCart(false)
+        }
+    })
+
+
+    // CLEAR USER CART
+    const clearUserCart = withPermission(async()=>{
+        setLoadingCart(true)
+        try {
+            const response = await axios.post(`${baseUrl}/clear/cart/${user.id}`)
+            const data = response.data
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }finally {
+            setLoadingCart(false)
+        }
+    })
+    
+    // INCREASE CART ITEM QUANTITY
+    const increaseDecreaseCartItem = withPermission(async(operation, productId, cartItemId)=>{
+        setLoadingCart(true)
+        try {
+            const response = await axios.post(`${baseUrl}/cart/${operation}/quantity/${user.id}/${productId}`)
+            const data = response.data
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }finally {
+            setLoadingCart(false)
+        }
+    })
+
+    const removeFromCart = withPermission(async(productId)=>{
+        setLoadingCart(true)
+        try {
+            const response = await axios.post(`${baseUrl}/remove/cart/${user.id}/${productId}`)
+            const data = response.data
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+        }finally {
+            setLoadingCart(false)
+        }
+    })
+
     const value = {
         cartItems,
+        addingToCart,
+        loadingCart,
+        getUserCart,
         addToCart,
-        addingToCart
+        clearUserCart,
+        increaseDecreaseCartItem,
+        removeFromCart
     }
     return <cartContext.Provider value={value}>{children}</cartContext.Provider>
 }

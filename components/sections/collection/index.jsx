@@ -1,3 +1,4 @@
+"use client"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import KaftanImage from "@/public/illustrations/kaftan.png"
 import ManCloth2 from "@/public/illustrations/cloth-2.png"
@@ -9,8 +10,15 @@ import ladyInYellow from "@/public/illustrations/lady-in-yellow-transparent.png"
 import LookingAway from "@/public/illustrations/lady-looking-transparent.png"
 import "./CollectionStyle.css";
 import Image from "next/image";
+import { useProductsContext } from "@/context/ProductContext";
+import { useEffect } from "react";
 
 const CollectionsIndex = () => {
+  const {getByAppeal, sortCategory, getSingleProduct, getCategoryLatestProducts, getProductsByCategory} = useProductsContext()
+
+  useEffect(()=>{
+    getByAppeal('men')
+  },[])
   return (
     <section className="collection">
       <section className="container">
