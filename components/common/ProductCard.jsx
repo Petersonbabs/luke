@@ -3,11 +3,11 @@ import { Heart } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="border bg-white">
-      <Card className="rounded-none mt-4 pt-4 shadow-none border-none w-[270px]">
+    <div className=" bg-white">
+      <Card className="rounded-none border mt-4 shadow-none  ">
         <CardContent className="relative">
-          <button className="absolute right-2 top-2 font-thin">
-            <Heart />
+          <button className="absolute right-8 flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all">
+            <Heart className="w-5 text-white"/>
           </button>
           <a href={`/products/${product._id}`} className="p-1">
             <div className="h-[300px]">

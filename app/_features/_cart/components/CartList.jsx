@@ -6,7 +6,7 @@ import ItemNotFound from "@/components/common/ItemNotFound";
 export default function CartList({ custom, cartItems }) {
   const { loadingCart } = useCartContext();
   return (
-    <section>
+    <section className="flex-1">
       {loadingCart ? (
         <Loader />
       ) : (
@@ -18,7 +18,9 @@ export default function CartList({ custom, cartItems }) {
               ))}
             </section>
           ) : (
-            <ItemNotFound text={"You have a empty cart"} />
+            <div className="bg-gray-50 flex-1 h-48 flex p-8  items-center justify-center">
+              <p className="text-gray-500">Your cart is empty</p>
+            </div>
           )}
         </>
       )}

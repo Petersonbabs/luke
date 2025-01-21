@@ -6,7 +6,7 @@ import { useState } from "react";
 const CartCard = ({ item, custom }) => {
   const [quantity, setQuantity] = useState(item?.quantity)
   const {increaseDecreaseCartItem, removeFromCart, removingCartItem, operatingCartItem  } = useCartContext()
-  const itemDetail = {color: item?.color, size: item?.size, quantity: 1} 
+const itemDetail = {color: item?.color, size: item?.size, quantity: 1} 
   const getColorImage  = (color)=>{
     const chosencolor = item.productId.colors.find(item =>item.color == color)
     return chosencolor.image
