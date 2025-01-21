@@ -17,7 +17,9 @@ export default function MainHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const {getUserCart, loadingCart, cartItems} = useCartContext()
   useEffect(()=>{
-    getUserCart()
+    if(user){
+      getUserCart()
+    }
   },[user])
   useEffect(() => {
     const handleScroll = () => {

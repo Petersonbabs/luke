@@ -47,7 +47,7 @@ const CartProvider = ({children})=>{
     })
 
     // GET USER CART
-    const getUserCart = withPermission(async(donotLoad=false)=>{
+    const getUserCart = async(donotLoad=false)=>{
         if(!donotLoad){setLoadingCart(true)}
         try {
             const response = await axios(`${baseUrl}/cart/${user.id}`)
@@ -58,7 +58,7 @@ const CartProvider = ({children})=>{
         }finally {
             setLoadingCart(false)
         }
-    })
+    }
 
 
     // CLEAR USER CART

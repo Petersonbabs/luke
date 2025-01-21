@@ -17,7 +17,6 @@ const ProductsProvider = ({ children }) => {
   const [appealProducts, setAppealProducts] = useState();
   const [popular, setPopular] = useState();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  console.log(baseUrl);
 
   // GET ALL PRODUCTS
   const getAllProducts = async () => {
@@ -43,7 +42,6 @@ const ProductsProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/category/appeal/${appeal}`);
       const data = response.data
       setAppealProducts(data.productsByCategory)
-      console.log(data);
     } catch (error) {
       console.log(error);
     } finally{
@@ -87,7 +85,6 @@ const ProductsProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/newin`);
       const data = response.data
       setNewIn(data)
-      console.log(data)
     } catch (error) {
       console.log(error);
     } finally{
