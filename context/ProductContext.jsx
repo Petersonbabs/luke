@@ -17,6 +17,7 @@ const ProductsProvider = ({ children }) => {
   const [appealProducts, setAppealProducts] = useState();
   const [popular, setPopular] = useState();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  console.log(baseUrl);
 
   // GET ALL PRODUCTS
   const getAllProducts = async () => {
