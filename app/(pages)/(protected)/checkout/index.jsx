@@ -1,5 +1,5 @@
+""
 import CartList from "@/app/_features/_cart/components/CartList";
-import UseCheckout from "./hook/useCheckout";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,7 +13,6 @@ import CartData from "@/data/cart.json";
 import Link from "next/link";
 
 const CheckoutIndex = () => {
-  const {} = UseCheckout();
   return (
     <section className="pt-[90px] container">
       <Breadcrumb>
