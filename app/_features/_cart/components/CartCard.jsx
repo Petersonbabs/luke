@@ -1,4 +1,4 @@
-import { AnimatedLoader } from "@/components/common/Loader";
+"use client"
 import { useCartContext } from "@/context/CartContext";
 import { ImageIcon, Loader2, Minus, Plus, Trash } from "lucide-react";
 import { useState } from "react";
