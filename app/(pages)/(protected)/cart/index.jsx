@@ -4,10 +4,6 @@ import OrderSummary from "@/app/_features/_cart/components/OrderSummary";
 import { useCartContext } from "@/context/CartContext";
 import { useEffect } from "react";
 
-// 0
-// : 
-
-
 
 const CartPage = () => {
   const {getUserCart, cartItems} = useCartContext()

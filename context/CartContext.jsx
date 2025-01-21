@@ -16,36 +16,43 @@ export const useCartContext = ()=>{
 
 const CartProvider = ({children})=>{
     const [cartItems, setCartItems] = useState()
-    const [addingToCart, setAddingToCart] = useState(false)
+    const [addingToCart, setAddingToCart] = useState("")
     const [loadingCart, setLoadingCart] = useState(false)
+    const [operatingCartItem, setOperatingCartItem] = useState("")
+    const [removingCartItem, setRemovingCartItem] = useState("")
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const {user} = useAuthContext()
 
 
     // ADD TO CART
     const addToCart = withPermission(async (productId, items)=>{
-        setAddingToCart(true)
+        setAddingToCart(productId)
         console.log(items);
+        const {color, quantity, size} = items.items[0]
+        if(!color || !quantity || !size){
+            toast.info('Wait, choose your size, color & quantiy 😉')
+            return
+        }
         try {
             const response = await axios.post(`${baseUrl}/add/cart/${user.id}/${productId}`, items)
             const {message} = response.data
             toast.success(message)
+            getUserCart()
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message)
         } finally{
-            setAddingToCart(false)
+            setAddingToCart("")
         }
     })
 
     // GET USER CART
-    const getUserCart = withPermission(async()=>{
-        setLoadingCart(true)
+    const getUserCart = withPermission(async(donotLoad=false)=>{
+        if(!donotLoad){setLoadingCart(true)}
         try {
             const response = await axios(`${baseUrl}/cart/${user.id}`)
             const data = response.data
             setCartItems(data)
-            console.log(data);
         } catch (error) {
             console.log(error)
         }finally {
@@ -55,8 +62,8 @@ const CartProvider = ({children})=>{
 
 
     // CLEAR USER CART
-    const clearUserCart = withPermission(async()=>{
-        setLoadingCart(true)
+    const clearUserCart = withPermission(async(donotLoad)=>{
+        if(!donotLoad){setLoadingCart(true)}
         try {
             const response = await axios.post(`${baseUrl}/clear/cart/${user.id}`)
             const data = response.data
@@ -69,30 +76,33 @@ const CartProvider = ({children})=>{
     })
     
     // INCREASE CART ITEM QUANTITY
-    const increaseDecreaseCartItem = withPermission(async(operation, productId, cartItemId)=>{
-        setLoadingCart(true)
+    const increaseDecreaseCartItem = withPermission(async(operation, productId, cartItemId, formData)=>{
+        setOperatingCartItem(cartItemId)
         try {
-            const response = await axios.post(`${baseUrl}/cart/${operation}/quantity/${user.id}/${productId}`)
+            const response = await axios.post(`${baseUrl}/cart/${operation}/quantity/${user.id}/${productId}`, formData)
             const data = response.data
-            console.log(data);
-        } catch (error) {
-            console.log(error)
-        }finally {
-            setLoadingCart(false)
-        }
-    })
-
-    const removeFromCart = withPermission(async(productId)=>{
-        setLoadingCart(true)
-        try {
-            const response = await axios.post(`${baseUrl}/remove/cart/${user.id}/${productId}`)
-            const data = response.data
-            console.log(data);
+            toast.success(data.message)
+            getUserCart(true)
         } catch (error) {
             console.log(error)
             toast.error(error.response.data.message)
         }finally {
-            setLoadingCart(false)
+            setOperatingCartItem("")
+        }
+    })
+
+    const removeFromCart = withPermission(async(productId, itemDetail, cartItemId)=>{
+        setRemovingCartItem(cartItemId)
+        try {
+            const response = await axios.post(`${baseUrl}/remove/cart/${user.id}/${productId}`, itemDetail)
+            const data = response.data
+            getUserCart(true)
+            toast.success(data.message)
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+        }finally {
+            setRemovingCartItem("")
         }
     })
 
@@ -100,6 +110,8 @@ const CartProvider = ({children})=>{
         cartItems,
         addingToCart,
         loadingCart,
+        operatingCartItem,
+        removingCartItem,
         getUserCart,
         addToCart,
         clearUserCart,

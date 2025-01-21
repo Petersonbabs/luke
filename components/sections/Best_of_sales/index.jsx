@@ -1,11 +1,11 @@
 "use client";
+import Loader from "@/components/common/Loader";
 import ProductCard from "@/components/common/ProductCard";
-import Link from "next/link";
 import { useProductsContext } from "@/context/ProductContext";
 import { useEffect } from "react";
 
 const BestOfSalesIndex = ({ title }) => {
-  const { getBestSales, bestSales } = useProductsContext();
+  const { getBestSales, bestSales, loadingBestOfSales } = useProductsContext();
   useEffect(() => {
     getBestSales();
   }, []);
@@ -13,13 +13,19 @@ const BestOfSalesIndex = ({ title }) => {
     <section className="container my-8 mx-auto">
       <h2 className="lbd-sub-text">{title}</h2>
       <section className="flex overflow-x-scroll scrolled-product">
-        {bestSales?.slice(0, 5).map((product, index) => (
-          <section key={index} className="md:basis-1/2 lg:basis-1/3">
-            <Link href={`/products/${product.product._id}`} className="p-1">
+        {
+          !loadingBestOfSales ? (
+            <>
+          {bestSales?.slice(0, 5).map((product, index) => (
+            <section key={index} className="md:basis-1/2 lg:basis-1/3">
               <ProductCard index={index} product={product?.product} />
-            </Link>
-          </section>
-        ))}
+            </section>
+          ))}
+            </>
+          ) : (
+            <Loader />
+          )
+        }
       </section>
     </section>
   );

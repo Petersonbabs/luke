@@ -6,6 +6,11 @@ import "./singleproduct.css";
 import BestOfSalesList from "@/components/sections/Best_of_sales/BestList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewsList from "@/app/_features/_reviews/components/ReviewsList";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import men_trouser_size_chart from "@/public/brand/men_trouser_size_chart.jpeg"
+import men_shirt_size_chart from "@/public/brand/men_shirt_size_chart.jpeg"
+import women_size_chart from "@/public/brand/women_size.jpeg"
+import Image from "next/image";
 
 const SingleProductIndex = () => {
   const {
@@ -18,10 +23,9 @@ const SingleProductIndex = () => {
     colors,
     handleImageClick,
     addingToCart,
-    handleAddToCart
+    handleAddToCart,
+    handleSelectColor,
   } = useSingleProduct();
-
-  
 
   return (
     <section className="pt-[70px]">
@@ -74,19 +78,25 @@ const SingleProductIndex = () => {
             </span>
             <div>
               <span>Color - {selectedColor}</span>
-              <div className="flex gap-4 my-2">
+              <div className="flex items-center gap-4 my-2">
                 {colors?.map((color, key) => (
                   <div
                     key={key}
-                    className={`border w-12 h-12 flex items-center justify-center bg-${
+                    className={`border w-12 h-12 flex items-center justify-center rounded bg-${
                       color.color
-                    }-500  cursor-pointer p-2 ${
+                    }-500  cursor-pointer p-6 ${
                       selectedImage == color.image
                         ? "border border-blue-500"
                         : "border-gray-300"
+                    }
+                    ${
+                      selectedColor == color.color
+                        ? "border-4  border-blue-500"
+                        : "border-gray-300"
                     }`}
                     onClick={() => {
-                      handleImageClick(color.image,color.color);
+                      handleSelectColor(color.color);
+                      handleImageClick(color.image, color.color);
                     }}
                   >
                     {color.color}
@@ -95,8 +105,27 @@ const SingleProductIndex = () => {
               </div>
             </div>
             <div className="size">
-              <span>Size</span>
-              <div className="flex gap-4">
+              <div className="flex items-center justify-between">
+                <span>Available Sizes</span>
+                <Dialog>
+                  <DialogTrigger className="min-w-fit text-blue-500">
+                    Size Guide
+                  </DialogTrigger>
+                  <DialogContent className="overflow-y-scroll h-[500px]">
+                    <DialogTitle>Size Guide</DialogTitle>
+                    <div className="mb-4">
+                      <Image src={men_shirt_size_chart} alt="Men Shirt Size chart"  className="w-full "/>
+                    </div>
+                    <div className="mb-4">
+                      <Image src={men_trouser_size_chart} alt="Men trouser size chart"  className="w-full"/>
+                    </div>
+                    <div className="mb-4">
+                      <Image src={women_size_chart} alt="Women size chart"  className="w-full"/>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              <div className="mt-2 flex gap-4">
                 {["sm", "md", "lg", "Xl"].map((size) => (
                   <button
                     key={size}
@@ -121,7 +150,11 @@ const SingleProductIndex = () => {
 
             {/* Actions */}
             <section className="flex gap-4 items-center justify-start">
-              <button className="btn btn-full btn-green" disabled={addingToCart} onClick={handleAddToCart}>
+              <button
+                className="btn btn-full btn-green"
+                disabled={addingToCart}
+                onClick={handleAddToCart}
+              >
                 {!addingToCart ? (
                   <span>Add to Bag</span>
                 ) : (

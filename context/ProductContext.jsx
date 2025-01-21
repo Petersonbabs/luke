@@ -7,10 +7,14 @@ const ProductsContext = createContext();
 const ProductsProvider = ({ children }) => {
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [loadingAppeal, setLoadingAppeal] = useState(false);
+  const [loadingNewin, setLoadingNewin] = useState(false);
+  const [loadingBestOfSales, setLoadingBestOfSales] = useState(false);
   const [isSorting, setIsSorting] = useState(false);
   const [singleProduct, setSingleProduct] = useState();
   const [allProducts, setAllProducts] = useState();
+  const [newIn, setNewIn] = useState();
   const [bestSales, setBestSales] = useState();
+  const [appealProducts, setAppealProducts] = useState();
   const [popular, setPopular] = useState();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -22,7 +26,6 @@ const ProductsProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/all/product`);
       const data = response.data
       setAllProducts(data)
-      console.log(data);
     } catch (error) {
       console.log(error);
     } finally{
@@ -36,9 +39,9 @@ const ProductsProvider = ({ children }) => {
     setLoadingAppeal(true)
     console.log('Appeal products loading...');
     try {
-      const response = await axios(`${baseUrl}/product/appeal/${appeal}`);
+      const response = await axios(`${baseUrl}/category/appeal/${appeal}`);
       const data = response.data
-      setAllProducts(data)
+      setAppealProducts(data.productsByCategory)
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -75,27 +78,25 @@ const ProductsProvider = ({ children }) => {
     }
   }
 
-  useEffect(()=>{
-    // getByAppeal()
-  },[])
 
   // GET ALL NEW IN
   const getAllNewIn = async () => {
-    setLoadingProducts(true)
+    setLoadingNewin(true)
     try {
       const response = await axios(`${baseUrl}/newin`);
       const data = response.data
-      console.log(data);
+      setNewIn(data)
+      console.log(data)
     } catch (error) {
       console.log(error);
     } finally{
-      setLoadingProducts(false)
+      setLoadingNewin(false)
     }
   };
 
   // GET BEST SELLERS
   const getBestSales = async()=>{
-    setLoadingProducts(true)
+    setLoadingBestOfSales(true)
     try {
       const response = await axios(`${baseUrl}/bestseller`)
       const data = response.data
@@ -103,7 +104,7 @@ const ProductsProvider = ({ children }) => {
     } catch (error) {
       console.log(error)
     } finally {
-      setLoadingProducts(false)
+      setLoadingBestOfSales(false)
     }
   }
   
@@ -125,7 +126,6 @@ const ProductsProvider = ({ children }) => {
     try {
       const response = await axios(`${baseUrl}/product/${productId}`)
       const data = response.data
-      console.log(data);
       setSingleProduct(data);
     } catch (error) {
       console.log(error);
@@ -153,6 +153,10 @@ const ProductsProvider = ({ children }) => {
     popular,
     isSorting,
     loadingAppeal,
+    newIn,
+    appealProducts,
+    loadingNewin,
+    loadingBestOfSales,
     getAllProducts,
     getByAppeal,
     sortCategoryOrder,

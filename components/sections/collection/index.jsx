@@ -1,24 +1,21 @@
-"use client"
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import KaftanImage from "@/public/illustrations/kaftan.png"
-import ManCloth2 from "@/public/illustrations/cloth-2.png"
-import Trendy from "@/public/illustrations/trendy.png"
-import ManSitting from "@/public/illustrations/man-sitting-transparent.png"
-import boubou from "@/public/illustrations/boubou.png"
-import cloth1 from "@/public/illustrations/cloth-1.png"
-import ladyInYellow from "@/public/illustrations/lady-in-yellow-transparent.png"
-import LookingAway from "@/public/illustrations/lady-looking-transparent.png"
 import "./CollectionStyle.css";
-import Image from "next/image";
 import { useProductsContext } from "@/context/ProductContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import Loader from "@/components/common/Loader";
+import ItemNotFound from "@/components/common/ItemNotFound";
 
 const CollectionsIndex = () => {
-  const {getByAppeal, sortCategory, getSingleProduct, getCategoryLatestProducts, getProductsByCategory} = useProductsContext()
-
-  useEffect(()=>{
-    getByAppeal('men')
-  },[])
+  const { getByAppeal, loadingAppeal, appealProducts } = useProductsContext();
+  const [appeal, setAppeal] = useState("men");
+  const toggleAppeal = (appealName) => {
+    setAppeal(appealName);
+  };
+  useEffect(() => {
+    getByAppeal(appeal);
+  }, [appeal]);
   return (
     <section className="collection">
       <section className="container">
@@ -29,49 +26,73 @@ const CollectionsIndex = () => {
                 Unlock the Magic of Our Collection
               </h2>
               <TabsList>
-                <TabsTrigger value="men">Men</TabsTrigger>
-                <TabsTrigger value="women">Women</TabsTrigger>
+                <TabsTrigger
+                  value="men"
+                  onClick={(e) => {
+                    toggleAppeal("men");
+                  }}
+                >
+                  Men
+                </TabsTrigger>
+                <TabsTrigger
+                  value="women"
+                  onClick={(e) => {
+                    toggleAppeal("women");
+                  }}
+                >
+                  Women
+                </TabsTrigger>
               </TabsList>
             </div>
             <TabsContent value="men">
-                <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
-                    <div className="collection-img">
-                        <Image src={KaftanImage} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Kaftan</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={ManCloth2} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Boubou</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={Trendy} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Trendy</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={ManSitting} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Chinos</h2>
-                    </div>
-                </section>
+              {loadingAppeal ? (
+                <Loader />
+              ) : (
+                <>
+                  {appealProducts?.length > 0 && appeal == "men"  ? (
+                    <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
+                      {appealProducts?.slice(0, 4).map((product) => (
+                        <div className="collection-img" key={product._id}>
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            width={100}
+                            height={100}
+                          />
+                          <h2 className="collection-name">{product.name}</h2>
+                        </div>
+                      ))}
+                    </section>
+                  ) : (
+                    <ItemNotFound text={`No ${appeal} collection found!`}/>
+                  )}
+                </>
+              )}
             </TabsContent>
             <TabsContent value="women">
-            <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
-                    <div className="collection-img">
-                        <Image src={boubou} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Boubou</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={cloth1} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Collection Title</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={ladyInYellow} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Kaftan</h2>
-                    </div>
-                    <div className="collection-img">
-                        <Image src={LookingAway} alt="Kaftan Image" width={100} height={100} />
-                        <h2 className="collection-name">Lady Dress</h2>
-                    </div>
-                </section>
+              {loadingAppeal ? (
+                <Loader />
+              ) : (
+                <>
+                  {appealProducts?.length > 0 && appeal == "women" ? (
+                    <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
+                      {appealProducts?.slice(0, 4).map((product) => (
+                        <div className="collection-img" key={product._id}>
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            width={100}
+                            height={100}
+                          />
+                          <h2 className="collection-name">{product.name}</h2>
+                        </div>
+                      ))}
+                    </section>
+                  ) : (
+                    <ItemNotFound text={`No ${appeal} collection found!`}/>
+                  )}
+                </>
+              )}
             </TabsContent>
           </Tabs>
         </div>

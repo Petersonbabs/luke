@@ -50,15 +50,15 @@ const useSingleProduct = () => {
   // Handle image click
   const handleImageClick = (image, color) => {
     setSelectedImage(image);
-    setFormData((prev) => ({
-      ...prev,
-      items: [
-        {
-          ...prev.items[0],
-          color,
-        },
-      ],
-    }));
+    // setFormData((prev) => ({
+    //   ...prev,
+    //   items: [
+    //     {
+    //       ...prev.items[0],
+    //       color,
+    //     },
+    //   ],
+    // }));
   };
 
   // Handle size selection

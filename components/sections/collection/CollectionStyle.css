@@ -2,9 +2,7 @@
     padding: 4rem 0;
 }
 
-.collection .content{
-    /* height: 300px; */
-}
+
 
 .collection .content .collection-img{
     width: 100%;
@@ -23,7 +21,7 @@
     /* top: 0; */
     bottom: 0;
     
-    object-fit: contain;
+    object-fit: cover;
     position: absolute;
 }
 

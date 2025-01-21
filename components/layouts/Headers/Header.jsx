@@ -9,11 +9,16 @@ import MiniSidebar from "../MiniSidebar/MiniSidebar";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useCartContext } from "@/context/CartContext";
 
 export default function MainHeader() {
   const { logo, menu, actions } = HeaderData;
   const { user } = useAuthContext();
   const [isScrolled, setIsScrolled] = useState(false);
+  const {getUserCart, loadingCart, cartItems} = useCartContext()
+  useEffect(()=>{
+    getUserCart()
+  },[user])
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -62,7 +67,7 @@ export default function MainHeader() {
           <Link href={"/cart"} className="relative">
             <ShoppingCart />
             <span className="absolute top-[-5px] right-[-5px] flex h-5 w-5 text-[12px] bg-black rounded-full justify-center items-center text-white p-[2px]">
-              {CartData.items.length}
+              {cartItems?.items.length}
             </span>
           </Link>
 
