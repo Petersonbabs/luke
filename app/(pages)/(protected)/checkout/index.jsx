@@ -1,4 +1,4 @@
-""
+"use client"
 import CartList from "@/app/_features/_cart/components/CartList";
 import {
   Breadcrumb,
