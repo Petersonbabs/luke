@@ -1,6 +1,5 @@
 "use client";
 import HeaderData from "@/data/layouts/mainheader";
-import CartData from "@/data/cart";
 import Link from "next/link";
 import "./HeaderStyle.css";
 import SheetUI from "../SheetUI/SheetUI";

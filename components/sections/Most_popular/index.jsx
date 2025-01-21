@@ -11,7 +11,7 @@ const MostPopularIndex = ({ title }) => {
   }, []);
   return (
     <section className="container my-8 mx-auto">
-      <h2 className="lbd-sub-text">{title}</h2>
+      <h2 className="lbd-sub-text mb-4">{title}</h2>
       <section className="flex overflow-x-scroll scrolled-product">
         {popular?.slice(0, 5).map((product, index) => (
           <section key={index} className="md:basis-1/2 lg:basis-1/3">

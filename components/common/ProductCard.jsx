@@ -1,15 +1,12 @@
-"use client";
 import { Card, CardContent } from "@/components/ui/card";
-import { useCartContext } from "@/context/CartContext";
 import { Heart } from "lucide-react";
 
 const ProductCard = ({ product }) => {
-  const { addingToCart, addToCart } = useCartContext();
   return (
-    <div className="">
+    <div className="border bg-white">
       <Card className="rounded-none mt-4 pt-4 shadow-none border-none w-[270px]">
         <CardContent className="relative">
-          <button className="absolute right-6 top-2 font-thin">
+          <button className="absolute right-2 top-2 font-thin">
             <Heart />
           </button>
           <a href={`/products/${product._id}`} className="p-1">
