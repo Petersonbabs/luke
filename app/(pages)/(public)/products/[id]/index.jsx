@@ -6,11 +6,18 @@ import "./singleproduct.css";
 import BestOfSalesList from "@/components/sections/Best_of_sales/BestList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewsList from "@/app/_features/_reviews/components/ReviewsList";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import men_trouser_size_chart from "@/public/brand/men_trouser_size_chart.jpeg"
-import men_shirt_size_chart from "@/public/brand/men_shirt_size_chart.jpeg"
-import women_size_chart from "@/public/brand/women_size.jpeg"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import men_trouser_size_chart from "@/public/brand/men_trouser_size_chart.jpeg";
+import men_shirt_size_chart from "@/public/brand/men_shirt_size_chart.jpeg";
+import women_size_chart from "@/public/brand/women_size.jpeg";
 import Image from "next/image";
+import { useWishListContext } from "@/context/WishListContext";
+import { AnimatedLoader } from "@/components/common/Loader";
 
 const SingleProductIndex = () => {
   const {
@@ -25,6 +32,7 @@ const SingleProductIndex = () => {
     handleAddToCart,
     handleSelectColor,
   } = useSingleProduct();
+  const {addToWishList, addingWishList} = useWishListContext()
 
   return (
     <section className="pt-[70px]">
@@ -81,8 +89,7 @@ const SingleProductIndex = () => {
                 {colors?.map((color, key) => (
                   <div
                     key={key}
-                    className={`border w-12 h-12 flex items-center justify-center rounded bg-${
-                      color.color
+                    className={`border w-12 h-12 flex items-center justify-center rounded
                     }-500  cursor-pointer p-6 ${
                       selectedImage == color.image
                         ? "border border-blue-500"
@@ -113,13 +120,25 @@ const SingleProductIndex = () => {
                   <DialogContent className="overflow-y-scroll h-[500px]">
                     <DialogTitle>Size Guide</DialogTitle>
                     <div className="mb-4">
-                      <Image src={men_shirt_size_chart} alt="Men Shirt Size chart"  className="w-full "/>
+                      <Image
+                        src={men_shirt_size_chart}
+                        alt="Men Shirt Size chart"
+                        className="w-full "
+                      />
                     </div>
                     <div className="mb-4">
-                      <Image src={men_trouser_size_chart} alt="Men trouser size chart"  className="w-full"/>
+                      <Image
+                        src={men_trouser_size_chart}
+                        alt="Men trouser size chart"
+                        className="w-full"
+                      />
                     </div>
                     <div className="mb-4">
-                      <Image src={women_size_chart} alt="Women size chart"  className="w-full"/>
+                      <Image
+                        src={women_size_chart}
+                        alt="Women size chart"
+                        className="w-full"
+                      />
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -160,12 +179,19 @@ const SingleProductIndex = () => {
                   <Loader2 className="animate-spin m-auto" />
                 )}
               </button>
-              <div className="wishlist-btn">
-                {4 > 2 ? (
-                  <Heart className="size-4" />
-                ) : (
-                  <Loader2 className="animate-spin m-auto" />
-                )}
+              <div >
+                <button
+                  className="wishlist-btn"
+                  onClick={() => {
+                    addToWishList(singleProduct?._id);
+                  }}
+                >
+                  {addingWishList == singleProduct?._id ? (
+                    <AnimatedLoader />
+                  ) : (
+                    <Heart className="w-5 " />
+                  )}
+                </button>
               </div>
             </section>
           </section>
@@ -174,13 +200,13 @@ const SingleProductIndex = () => {
 
         {/* REVIEWS & DESCRIPTION */}
         <section className="mt-16 ">
-          <Tabs defaultValue="reviews">
+          <Tabs defaultValue="description">
             <TabsList className="mb-4 gap-8">
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
               <TabsTrigger value="description">Description</TabsTrigger>
+              <TabsTrigger value="reviews">Reviews</TabsTrigger>
             </TabsList>
             <TabsContent value="reviews">
-              <ReviewsList />
+              <ReviewsList id={singleProduct?._id} />
             </TabsContent>
             <TabsContent value="description">
               <p>{singleProduct?.description}</p>

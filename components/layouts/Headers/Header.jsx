@@ -3,21 +3,24 @@ import HeaderData from "@/data/layouts/mainheader";
 import Link from "next/link";
 import "./HeaderStyle.css";
 import SheetUI from "../SheetUI/SheetUI";
-import { AlignRight, ShoppingCart, User } from "lucide-react";
+import { AlignRight, Heart, ShoppingCart, User } from "lucide-react";
 import MiniSidebar from "../MiniSidebar/MiniSidebar";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useCartContext } from "@/context/CartContext";
+import { useWishListContext } from "@/context/WishListContext";
 
 export default function MainHeader() {
   const { logo, menu, actions } = HeaderData;
   const { user } = useAuthContext();
   const [isScrolled, setIsScrolled] = useState(false);
+  const {getUserWishList, userWishList} = useWishListContext()
   const {getUserCart, loadingCart, cartItems} = useCartContext()
   useEffect(()=>{
     if(user){
       getUserCart()
+      getUserWishList()
     }
   },[user])
   useEffect(() => {
@@ -65,11 +68,23 @@ export default function MainHeader() {
             </Link>
           ))}
 
+          <Link href={"/wishlist"} className="relative">
+            <Heart />
+            {
+              userWishList.length > 0 &&
+            <span className="absolute top-[-5px] right-[-5px] flex h-5 w-5 text-[12px] bg-black rounded-full justify-center items-center text-white p-[2px]">
+              {userWishList.length}
+            </span>
+            }
+          </Link>
           <Link href={"/cart"} className="relative">
             <ShoppingCart />
+            {
+              cartItems?.items?.length > 0 &&
             <span className="absolute top-[-5px] right-[-5px] flex h-5 w-5 text-[12px] bg-black rounded-full justify-center items-center text-white p-[2px]">
-              {cartItems?.items.length}
+              {cartItems?.items?.length}
             </span>
+            }
           </Link>
 
           {!user ? (

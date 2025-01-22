@@ -6,12 +6,21 @@ import { Input } from "@/components/ui/input";
 import { ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "../styles/review.css"
+import { useReviewContext } from "@/context/ReviewContext";
+import { useEffect } from "react";
 
-export default function ReviewsList() {
+export default function ReviewsList({id}) {
+  const {productReviews, getProductReviews} = useReviewContext()
+  useEffect(()=>{
+    getProductReviews(id)
+    console.log(productReviews);
+    
+  },[])
+
   return (
     <section className="flex flex-col gap-4 md:flex-row justify-between">
       <section>
-        {ReviewsData.reviews.map((review, key) => (
+        {productReviews?.map((review, key) => (
           <ReviewCard review={review} key={key}/>
         ))}
       </section>

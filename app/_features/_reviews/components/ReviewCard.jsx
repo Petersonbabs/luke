@@ -13,8 +13,8 @@ export default function ReviewCard({review}) {
       </div>
       <div className="right flex flex-col gap-2 ">
         <div className="flex items-center gap-3">
-          <h3>{review.userName}.</h3>
-          <span className="text-[#999]">{review.date}</span>
+          <h3>{review.email}.</h3>
+          <span className="text-[#999]">03-12-2024</span>
         </div>
         <div className="flex">
             <Star size={16}/>
@@ -23,7 +23,7 @@ export default function ReviewCard({review}) {
             <Star size={16}/>
             <Star size={16}/>
         </div>
-        <p>{review.reviewText}</p>
+        <p>{review.review}</p>
       </div>
     </section>
   );

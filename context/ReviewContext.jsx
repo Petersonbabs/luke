@@ -1,7 +1,7 @@
 "use client";
 import { withPermission } from "@/app/_features/_authentication/AuthChecker";
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "./AuthContext";
 import { toast } from "sonner";
 
@@ -28,7 +28,7 @@ const ReviewProvider = ({ children }) => {
         const response = await axios(`${baseUrl}/review/${productId}`)
         const data = response.data;
       console.log(response);
-      console.log(data);
+      setProductReviews(data)
     } catch (error) {
         console.log(error)
     } finally {
@@ -36,6 +36,9 @@ const ReviewProvider = ({ children }) => {
 
     }
   }
+  useEffect(()=>{
+    getProductReviews('678a58f32d64ef7ace96d323')
+  },[])
 
   //   ADD REVIEW TO A PRODUCT
   const addReview = withPermission(async (reviewForm, productId) => {

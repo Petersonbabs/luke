@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   const {addToWishList, addingWishList} = useWishListContext()
   return (
     <div className=" bg-white">
-      <Card className="rounded-none border mt-4 shadow-none  ">
+      <Card className="rounded-none border shadow-none  ">
         <CardContent className="relative">
           <button
             className="absolute right-8 text-white flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all"

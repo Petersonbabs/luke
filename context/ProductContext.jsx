@@ -155,6 +155,7 @@ const ProductsProvider = ({ children }) => {
     appealProducts,
     loadingNewin,
     loadingBestOfSales,
+    allProducts,
     getAllProducts,
     getByAppeal,
     sortCategoryOrder,
