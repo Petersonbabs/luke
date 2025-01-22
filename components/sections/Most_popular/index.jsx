@@ -1,6 +1,5 @@
 "use client";
 import ProductCard from "@/components/common/ProductCard";
-import Link from "next/link";
 import { useProductsContext } from "@/context/ProductContext";
 import { useEffect } from "react";
 

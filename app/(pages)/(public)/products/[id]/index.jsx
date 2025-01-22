@@ -17,7 +17,6 @@ const SingleProductIndex = () => {
     singleProduct,
     handleSelectSize,
     formData,
-    loading,
     selectedColor,
     selectedImage,
     colors,
@@ -155,14 +154,14 @@ const SingleProductIndex = () => {
                 disabled={addingToCart}
                 onClick={handleAddToCart}
               >
-                {!addingToCart ? (
+                {addingToCart !== singleProduct?._id ? (
                   <span>Add to Bag</span>
                 ) : (
                   <Loader2 className="animate-spin m-auto" />
                 )}
               </button>
               <div className="wishlist-btn">
-                {!loading ? (
+                {4 > 2 ? (
                   <Heart className="size-4" />
                 ) : (
                   <Loader2 className="animate-spin m-auto" />

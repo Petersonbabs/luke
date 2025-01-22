@@ -12,6 +12,10 @@
         {
             "href": "/products",
             "label": "Products"
+        },
+        {
+            "href": "/wishlist",
+            "label": "Wishlist"
         }
     ],
     "actions": [

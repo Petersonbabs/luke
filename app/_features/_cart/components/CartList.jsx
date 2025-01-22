@@ -1,7 +1,6 @@
 import { useCartContext } from "@/context/CartContext";
 import CartCard from "./CartCard";
 import Loader from "@/components/common/Loader";
-import ItemNotFound from "@/components/common/ItemNotFound";
 
 export default function CartList({ custom, cartItems }) {
   const { loadingCart } = useCartContext();

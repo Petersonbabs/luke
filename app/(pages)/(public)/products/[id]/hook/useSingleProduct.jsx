@@ -96,8 +96,8 @@ const useSingleProduct = () => {
   return {
     singleProduct,
     formData,
+    addingToCart,
     handleSelectSize,
-    loading: addingToCart,
     selectedImage,
     selectedColor,
     handleImageClick,

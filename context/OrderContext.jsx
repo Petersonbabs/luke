@@ -28,7 +28,7 @@ const OrderProvider = ({children})=>{
     const getAllOrders = withPermission(async ()=>{
         setLoadingAllOrders(true )
         try {
-            const response = await axios(`${baseUrl}/all/order/${user.id}`)
+            const response = await axios(`${baseUrl}/user/order/${user.id}`)
             const data = response.data
             console.log(response);
             console.log(data);
@@ -68,6 +68,7 @@ const OrderProvider = ({children})=>{
 
     // CREATE NEW ORDER
     const createNewOrder = withPermission(async (formData)=>{
+        console.log(formData)
         setCreatingOrder(true)
         try {
             const response = await axios.post(`${baseUrl}/order/${user.id}`, formData)
@@ -76,6 +77,12 @@ const OrderProvider = ({children})=>{
             console.log(data);
         } catch (error) {
             console.log(error)
+            // if(error.name == "AxiosError"){
+            //     toast.error(error.message)
+            // }
+            if(error.code == "ERR_BAD_REQUEST"){
+                toast.error(error.response.data.message)
+            }
         }finally{
             setCreatingOrder(false)
         }

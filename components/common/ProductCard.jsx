@@ -1,13 +1,25 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useWishListContext } from "@/context/WishListContext";
 import { Heart } from "lucide-react";
+import { AnimatedLoader } from "./Loader";
 
 const ProductCard = ({ product }) => {
+  const {addToWishList, addingWishList} = useWishListContext()
   return (
     <div className=" bg-white">
       <Card className="rounded-none border mt-4 shadow-none  ">
         <CardContent className="relative">
-          <button className="absolute right-8 flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all">
-            <Heart className="w-5 text-white"/>
+          <button
+            className="absolute right-8 text-white flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all"
+            onClick={() => {
+              addToWishList(product._id);
+            }}
+          >
+            {addingWishList == product._id ? (
+              <AnimatedLoader className="text-white" />
+            ) : (
+              <Heart className="w-5 text-white" />
+            )}
           </button>
           <a href={`/products/${product._id}`} className="p-1">
             <div className="h-[300px]">

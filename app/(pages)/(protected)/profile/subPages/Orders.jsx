@@ -1,9 +1,15 @@
 import OrderList from '@/app/_features/_order/components/OrderList'
+import Loader from '@/components/common/Loader'
+import { useOrderContext } from '@/context/OrderContext'
 import { BookText, CircleSlash2 } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Orders = () => {
+  const { getAllOrders, userOrders, loadingAllOrder } = useOrderContext();
+  useEffect(() => {
+    getAllOrders();
+  }, []);
   return (
     <section>
       <div className='flex items-center gap-4 mb-8'>
@@ -11,9 +17,12 @@ const Orders = () => {
         <h2 className='lbd-sub-text'>My Orders</h2>
       </div>
 
-      <section>
+      {
+        loadingAllOrder ?
+        <Loader /> :
+        <section>
         {
-          [].length == 0 ?
+          userOrders.length == 0 ?
           <>
             <OrderList />
           </> : 
@@ -27,6 +36,7 @@ const Orders = () => {
           </section>
         }
       </section>
+      }
     </section>
   )
 }

@@ -42,6 +42,14 @@ const CollectionsIndex = () => {
                 >
                   Women
                 </TabsTrigger>
+                <TabsTrigger
+                  value="unisex"
+                  onClick={(e) => {
+                    toggleAppeal("unisex");
+                  }}
+                >
+                  Unisex
+                </TabsTrigger>
               </TabsList>
             </div>
             <TabsContent value="men">
@@ -75,6 +83,31 @@ const CollectionsIndex = () => {
               ) : (
                 <>
                   {appealProducts?.length > 0 && appeal == "women" ? (
+                    <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
+                      {appealProducts?.slice(0, 4).map((product) => (
+                        <div className="collection-img" key={product._id}>
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            width={100}
+                            height={100}
+                          />
+                          <h2 className="collection-name">{product.name}</h2>
+                        </div>
+                      ))}
+                    </section>
+                  ) : (
+                    <ItemNotFound text={`No ${appeal} collection found!`}/>
+                  )}
+                </>
+              )}
+            </TabsContent>
+            <TabsContent value="unisex">
+              {loadingAppeal ? (
+                <Loader />
+              ) : (
+                <>
+                  {appealProducts?.length > 0 && appeal == "unisex" ? (
                     <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
                       {appealProducts?.slice(0, 4).map((product) => (
                         <div className="collection-img" key={product._id}>

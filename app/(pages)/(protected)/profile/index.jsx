@@ -38,6 +38,7 @@ const ProfilePageIndex = ({ toRender, shufflePage, checkPermission }) => {
         <DropdownMenuContent className="w-[90vw] rounded-none  ml-2">
           {menuList.map((item, index) => (
             <DropdownMenuItem
+            key={index}
               className={`hover:bg-black flex items-center rounded-none hover:text-white h-8 text-[16px] mb-2 cursor-pointer ${
                 toRender == index && "bg-black text-white transition-all"
               }`}

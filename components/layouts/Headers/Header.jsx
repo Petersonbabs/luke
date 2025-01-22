@@ -58,7 +58,7 @@ export default function MainHeader() {
               href={`/${item.label.toLowerCase()}`}
               key={key}
               className={`link-text ${
-                item.label == "Wishlist" ? "hidden md:block" : "block"
+                item.label == "Wishlist" ? "md:block" : "block"
               } `}
             >
               <div dangerouslySetInnerHTML={{ __html: item.icon }} />

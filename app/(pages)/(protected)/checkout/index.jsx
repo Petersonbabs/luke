@@ -31,9 +31,12 @@ const CheckoutIndex = () => {
         </BreadcrumbList>
       </Breadcrumb>
       <section className="flex flex-col md:flex-row gap-6 mt-8">
+        {/* /LEFT: CHECKOUT FORM */}
         <section className="flex-1">
           <CheckoutForm />
         </section>
+        
+        {/* RIGHT: ORDER REVIEW */}
         <section className="space-y-4">
           <section className="space-y-4 flex-1">
             <h2 className="text-3xl">Review Your Cart</h2>

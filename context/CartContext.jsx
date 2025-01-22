@@ -27,7 +27,6 @@ const CartProvider = ({children})=>{
     // ADD TO CART
     const addToCart = withPermission(async (productId, items)=>{
         setAddingToCart(productId)
-        console.log(items);
         const {color, quantity, size} = items.items[0]
         if(!color || !quantity || !size){
             toast.info('Wait, choose your size, color & quantiy 😉')

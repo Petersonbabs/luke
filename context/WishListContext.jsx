@@ -17,54 +17,51 @@ export const useWishListContext = () => {
 const WishListProvider = ({ children }) => {
   const [userWishList, setUserWishList] = useState([]);
   const [loadingWishList, setLoadingWishList] = useState(false);
-  const [addingWishList, setAddingWishList] = useState(false);
+  const [addingWishList, setAddingWishList] = useState("");
+  const [removingFromWishList, setRemovingFromWishList] = useState("");
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const { user } = useAuthContext();
 
   // GET ALL PRODUCT WishList
-  const getUserWishList = async () => {
-    setLoadingWishList(true);
+  const getUserWishList = async (doNotLoad) => {
+    !doNotLoad && setLoadingWishList(true);
     try {
-      const response = await axios(`${baseUrl}/favourite/${productId}`);
+      const response = await axios(`${baseUrl}/favourite/${user.id}`);
       const data = response.data;
-      console.log(response);
-      console.log(data);
+      console.log(data.favorites);
+      setUserWishList(data.favorites)
     } catch (error) {
       console.log(error);
     } finally {
-      setLoadingWishList(true);
+      setLoadingWishList(false);
     }
   };
 
   //   ADD WishList TO A PRODUCT
   const addToWishList = withPermission(async (productId) => {
-    setAddingWishList(true);
+    setAddingWishList(productId);
     try {
       const response = await axios.post(
-        `${baseUrl}/favourite/${user.id}/${productId}`);
-      const data = response.data;
-      console.log(response);
-      console.log(data);
+        `${baseUrl}/add/favourite/${user.id}/${productId}`);
+      toast.success('Added to wishlist')
     } catch (error) {
       console.log(error);
     } finally {
-      setAddingWishList(false);
+      setAddingWishList("");
     }
   });
 
   //   ADD WishList TO A PRODUCT
-  const removeFromWishList = withPermission(async (productId) => {
-    setAddingWishList(true);
+  const removeFromWishList = withPermission(async (id) => {
+    setRemovingFromWishList(id);
     try {
-      const response = await axios.post(
-        `${baseUrl}/remove/favourite/${user.id}/${productId}`);
-      const data = response.data;
-      console.log(response);
-      console.log(data);
+      await axios.post(`${baseUrl}/remove/favourite/${user.id}/${id}`);
+      getUserWishList(true)
+      toast.success('Removed from wishlist')
     } catch (error) {
       console.log(error);
     } finally {
-      setAddingWishList(false);
+      setRemovingFromWishList("");
     }
   });
 
@@ -72,6 +69,7 @@ const WishListProvider = ({ children }) => {
     userWishList,
     loadingWishList,
     addingWishList,
+    removingFromWishList,
     addToWishList,
     getUserWishList,
     removeFromWishList  
