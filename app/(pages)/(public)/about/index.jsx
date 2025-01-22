@@ -78,28 +78,37 @@ export default function AboutPageComponent() {
           <h1 className="lbd-h1">Our Vision</h1>
           <div className="p-8 bg-white mt-4 rounded-tr-[4rem] rounded-bl-[4rem]">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis doloribus cumque sit! Quasi cupiditate ipsa expedita
-              perspiciatis eveniet libero nam beatae ut amet, doloremque, ea
-              totam, eaque odio? Totam, ab!
+              Our journey began with a vision to connect the Nigerian diaspora
+              with their roots through premium-quality products and services.
+              Our brand is a testament to the rich cultural heritage and
+              elegance of Nigeria.
             </p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis doloribus cumque sit! Quasi cupiditate ipsa expedita
-              perspiciatis eveniet libero nam beatae ut amet, doloremque, ea
-              totam, eaque odio? Totam, ab!
+              Inspired by the vibrant traditions and sophisticated craftsmanship
+              of our homeland, we aim to bring a piece of Nigeria to you, no
+              matter where you are in the world.
             </p>
           </div>
         </div>
         <div>
-          <h1 className="lbd-h1">Our Mision</h1>
+          <h1 className="lbd-h1">Our Values</h1>
           <div className="p-8 bg-white mt-4 rounded-tr-[4rem] rounded-bl-[4rem]">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis doloribus cumque sit! Quasi cupiditate ipsa expedita
-              perspiciatis eveniet libero nam beatae ut amet, doloremque, ea
-              totam, eaque odio? Totam, ab!
-            </p>
+            <p className="mb-2 text-lg">At the heart of our brand are our core values:</p>
+            <ul className="list-disc">
+              <li>
+                <b className="font-extrabold underline">Quality</b>: We are committed to offering only the finest products
+                that meet the highest standards of craftsmanship.
+              </li>
+              <li>
+                <b className="font-extrabold underline">Community</b>: We believe in the power of community and aim to
+                create a space where the Nigerian diaspora can connect, share,
+                and support each other.
+              </li>
+              <li>
+                 <b className="font-extrabold underline">Cultural Pride</b>: We celebrate our heritage and are dedicated to
+                promoting and preserving the rich traditions of Nigeria.
+              </li>
+            </ul>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Perspiciatis doloribus cumque sit! Quasi cupiditate ipsa expedita
@@ -117,7 +126,7 @@ export default function AboutPageComponent() {
 
         <span className="">Or</span>
 
-        <div >
+        <div>
           <p className="text-lg">Chat Us Up +2349011614592</p>
         </div>
       </section>
