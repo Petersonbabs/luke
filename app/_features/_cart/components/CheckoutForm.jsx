@@ -194,19 +194,7 @@ const CheckoutForm = () => {
         </div>
       </div>
 
-      <button type="submit" disabled={creatingOrder} className={`  transition-all text-white py-2 px-4 rounded ${creatingOrder ? "bg-blue-400 hover:bg-blue-400" : "bg-blue-500 hover:bg-blue-600"}`}>
-        {
-          creatingOrder ?
-          <p className="flex gap-4 items-center">
-            <Bike className=" animate-bounce" />
-            <span>Ordering...</span>
-          </p> :
-          <p className="flex gap-4 items-center">
-            <Bike />
-            <span>Place Order</span>
-          </p>
-        }
-      </button>
+      
     </form>
   );
 };

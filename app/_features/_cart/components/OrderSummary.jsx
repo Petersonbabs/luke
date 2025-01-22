@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const OrderSummary = ({cartItems}) => {
-    console.log(cartItems);
     const [deliveryFee, setDeliveryFee] = useState(3000)
   return (
     <section className="border rounded p-4 h-fit sticky top-16 flex-[.8]">

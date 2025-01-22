@@ -14,15 +14,13 @@ export default function ReviewCard({review}) {
       <div className="right flex flex-col gap-2 ">
         <div className="flex items-center gap-3">
           <h3>{review.email}.</h3>
-          <span className="text-[#999]">03-12-2024</span>
+          <span className="text-[#999] hidden">03-12-2024</span>
         </div>
-        <div className="flex">
-            <Star size={16}/>
-            <Star size={16}/>
-            <Star size={16}/>
-            <Star size={16}/>
-            <Star size={16}/>
-        </div>
+        <div className="flex gap-4 items-center">
+            {[1, 2, 3, 4, 5].map((rating, index) => (
+              <Star className={`${review.rating >= rating ? " fill-black" : ""} size-4`} onClick={()=>{handleInput("rating", rating)}}/>
+            ))}
+          </div>
         <p>{review.review}</p>
       </div>
     </section>

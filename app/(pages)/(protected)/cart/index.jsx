@@ -15,7 +15,11 @@ const CartPage = () => {
       <h2 className="lbd-h1">My Bag</h2>
       <section className="mt-8 flex flex-col md:flex-row gap-8 justify-between">
         <CartList cartItems={cartItems}/>
-        <OrderSummary cartItems={cartItems}/>
+        {
+          cartItems?.items.length > 0 && (
+            <OrderSummary cartItems={cartItems}/>
+          )
+        }
       </section>
     </section>
   );

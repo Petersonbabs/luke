@@ -143,7 +143,7 @@ const SingleProductIndex = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              <div className="mt-2 flex gap-4">
+              <div className=" flex gap-4">
                 {["sm", "md", "lg", "Xl"].map((size) => (
                   <button
                     key={size}
@@ -157,15 +157,7 @@ const SingleProductIndex = () => {
                 ))}
               </div>
             </div>
-            <div>
-              <span>Specify your size</span>
-              <Input
-                onChange={(e) => {
-                  handleSelectSize(e.target.value);
-                }}
-              />
-            </div>
-
+        
             {/* Actions */}
             <section className="flex gap-4 items-center justify-start">
               <button

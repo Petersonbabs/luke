@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 import { AnimatedLoader } from "./Loader";
 
 const ProductCard = ({ product }) => {
-  const {addToWishList, addingWishList} = useWishListContext()
+  const { addToWishList, addingWishList } = useWishListContext();
   return (
     <div className=" bg-white">
       <Card className="rounded-none border shadow-none  ">
@@ -38,10 +38,12 @@ const ProductCard = ({ product }) => {
                   </span>
                 </div>
                 <div className="space-x-3">
-                  <span className="line-through text-gray-600 text-sm decoration-red-500">
-                    ₦{product?.price?.toLocaleString()}
-                  </span>
-                  <span>₦{product?.discountedPrice?.toLocaleString()}</span>
+                  {product.showDiscouted && (
+                    <span className="line-through text-gray-600 text-sm decoration-red-500">
+                      ₦{product?.price?.toLocaleString()}
+                    </span>
+                  )}
+                  <span>₦{product?.price?.toLocaleString()}</span>
                 </div>
               </div>
             </div>

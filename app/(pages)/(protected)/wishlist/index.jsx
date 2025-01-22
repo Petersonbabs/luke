@@ -5,13 +5,12 @@ import ItemNotFound from '@/components/common/ItemNotFound'
 import Loader from '@/components/common/Loader'
 import { useWishListContext } from '@/context/WishListContext'
 import React, { useEffect } from 'react'
+import "./wishlist.css"
 
 const WishlistIndex = () => {
   const {getUserWishList, loadingWishList, userWishList} = useWishListContext()
   useEffect(()=>{
     getUserWishList()
-    console.log(userWishList);
-    
   },[])
   return (
     <div className='pt-[70px] container'>
@@ -22,7 +21,7 @@ const WishlistIndex = () => {
         <section >
         {
             userWishList?.length > 0 ?
-            <section className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4'>
+            <section className='grid wishlist gap-4 sm:grid-cols-3 md:grid-cols-4'>
             {userWishList?.map((item, index)=>(
                 <WishlistCard item={item} key={index}/>
             ))}

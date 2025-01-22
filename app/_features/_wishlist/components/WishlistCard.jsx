@@ -29,7 +29,7 @@ const WishlistCard = ({ item }) => {
         <h2>{item.name}</h2>
         <span>₦{item.price.toLocaleString()}</span>
       </div>
-      <button className="btn black-btn btn-full">Move to cart</button>
+      <a className="btn black-btn btn-full text-center" href={`/products/${item?._id}`}>View Product</a>
     </div>
   );
 };

@@ -28,7 +28,6 @@ const WishListProvider = ({ children }) => {
     try {
       const response = await axios(`${baseUrl}/favourite/${user.id}`);
       const data = response.data;
-      console.log(data.favorites);
       setUserWishList(data.favorites)
     } catch (error) {
       console.log(error);
