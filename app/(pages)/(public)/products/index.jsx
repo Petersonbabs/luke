@@ -5,14 +5,13 @@ import { useProductsContext } from "@/context/ProductContext";
 import { useEffect, useState } from "react";
 import "./categories.css";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSearchParams, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import Loader, { AnimatedLoader } from "@/components/common/Loader";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -20,19 +19,16 @@ import { ArrowLeft } from "lucide-react";
 
 export default function ProductsPageIndex() {
   const {
-    allProducts,
-    getAllProducts,
     getProductsByCategory,
     categoryProducts,
     loadingCategoryProducts,
     getByAppeal,
     loadingAppeal,
     sortCategoryOrder,
-    isSorting,
     appealProducts,
   } = useProductsContext();
   // const searchParams = useSearchParams();
-  const url = new URL( window && window.location.href);
+  const url = new URL( window.location && window.location.href);
   const params = new URLSearchParams(url.search);
   const c = params.get("c");
   

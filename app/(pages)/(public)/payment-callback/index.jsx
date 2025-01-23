@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 const PaymentCallbackIdex = () => {
-    const url = new URL(window && window.location.href)
+    const url = new URL(window?.location && window.location.href)
         const params = new URLSearchParams(url.search)
         const trxref = params.get("reference")
         const navigate = useRouter()
