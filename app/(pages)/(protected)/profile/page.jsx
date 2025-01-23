@@ -13,9 +13,11 @@ export default function page() {
     setToRender(torender)
   };
 
-  if(!user || !token){
-    navigate.push('/login')
-  }
+  useEffect(() => {
+    if (!user || !token) {
+      navigate.push("/login");
+    }
+  }, [user, token, navigate]);
 
   return (
     <div className="pt-[70px]">

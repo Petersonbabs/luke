@@ -31,14 +31,13 @@ export default function ProductsPageIndex() {
   const [category, setCategory] = useState(c);
   const [appeal, setAppeal] = useState(n);
   useEffect(() => {
-    // This code will only run on the client side
     if (typeof window !== 'undefined') {
         const url = new URL(window.location.href);
         const params = new URLSearchParams(url.search);
 
         const c = params.get('c');
         const n = params.get('n');
-
+        
         setCategory(c);
         setAppeal(n);
     }

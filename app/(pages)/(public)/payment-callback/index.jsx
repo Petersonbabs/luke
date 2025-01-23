@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 const PaymentCallbackIdex = () => {
   const navigate = useRouter();
-  const { verifyPayment, verifyingPayment, paymentVerified } =
+  const { verifyPayment,  paymentVerified } =
     useOrderContext();
 
   useEffect(() => {
