@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import Loader from "@/components/common/Loader";
 import ItemNotFound from "@/components/common/ItemNotFound";
+import { useRouter } from "next/navigation";
 
 const CollectionsIndex = () => {
   const { getByAppeal, loadingAppeal, appealProducts } = useProductsContext();
@@ -13,6 +14,10 @@ const CollectionsIndex = () => {
   const toggleAppeal = (appealName) => {
     setAppeal(appealName);
   };
+   const router = useRouter()
+  const handleToCategory = (category)=>{
+    router.push(`/products/?c=${category}&n=${appeal}`)
+  }
   useEffect(() => {
     getByAppeal(appeal);
   }, [appeal]);
@@ -59,15 +64,17 @@ const CollectionsIndex = () => {
                 <>
                   {appealProducts?.length > 0 && appeal == "men"  ? (
                     <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
-                      {appealProducts?.slice(0, 4).map((product) => (
-                        <div className="collection-img" key={product._id}>
+                      {appealProducts?.slice(0, 4).map((category) => (
+                        <div className="collection-img" key={category._id} onClick={()=>{
+                          handleToCategory(category.name.toLowerCase())
+                        }}>
                           <img
-                            src={product.image}
-                            alt={product.name}
+                            src={category.image}
+                            alt={category.name}
                             width={100}
                             height={100}
                           />
-                          <h2 className="collection-name">{product.name}</h2>
+                          <h2 className="collection-name">{category.name}</h2>
                         </div>
                       ))}
                     </section>
@@ -84,18 +91,20 @@ const CollectionsIndex = () => {
                 <>
                   {appealProducts?.length > 0 && appeal == "women" ? (
                     <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
-                      {appealProducts?.slice(0, 4).map((product) => (
-                        <div className="collection-img" key={product._id}>
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            width={100}
-                            height={100}
-                          />
-                          <h2 className="collection-name">{product.name}</h2>
-                        </div>
-                      ))}
-                    </section>
+                    {appealProducts?.slice(0, 4).map((category) => (
+                      <div className="collection-img" key={category._id} onClick={()=>{
+                        handleToCategory(category.name.toLowerCase())
+                      }}>
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                          width={100}
+                          height={100}
+                        />
+                        <h2 className="collection-name">{category.name}</h2>
+                      </div>
+                    ))}
+                  </section>
                   ) : (
                     <ItemNotFound text={`No ${appeal} collection found!`}/>
                   )}
@@ -109,18 +118,20 @@ const CollectionsIndex = () => {
                 <>
                   {appealProducts?.length > 0 && appeal == "unisex" ? (
                     <section className="content gap-2 grid md:grid-cols-2 lg:grid-cols-4">
-                      {appealProducts?.slice(0, 4).map((product) => (
-                        <div className="collection-img" key={product._id}>
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            width={100}
-                            height={100}
-                          />
-                          <h2 className="collection-name">{product.name}</h2>
-                        </div>
-                      ))}
-                    </section>
+                    {appealProducts?.slice(0, 4).map((category) => (
+                      <div className="collection-img" key={category._id} onClick={()=>{
+                        handleToCategory(category.name.toLowerCase())
+                      }}>
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                          width={100}
+                          height={100}
+                        />
+                        <h2 className="collection-name">{category.name}</h2>
+                      </div>
+                    ))}
+                  </section>
                   ) : (
                     <ItemNotFound text={`No ${appeal} collection found!`}/>
                   )}

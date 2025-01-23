@@ -27,7 +27,6 @@ const ReviewProvider = ({ children }) => {
     try {
         const response = await axios(`${baseUrl}/review/${productId}`)
         const data = response.data;
-      console.log(response);
       setProductReviews(data)
     } catch (error) {
         console.log(error)

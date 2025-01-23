@@ -9,12 +9,14 @@ const ProductsProvider = ({ children }) => {
   const [loadingAppeal, setLoadingAppeal] = useState(false);
   const [loadingNewin, setLoadingNewin] = useState(false);
   const [loadingBestOfSales, setLoadingBestOfSales] = useState(false);
+  const [loadingCategoryProducts, setLoadingCategoryProducts] = useState(false);
   const [isSorting, setIsSorting] = useState(false);
   const [singleProduct, setSingleProduct] = useState();
   const [allProducts, setAllProducts] = useState();
   const [newIn, setNewIn] = useState();
   const [bestSales, setBestSales] = useState();
   const [appealProducts, setAppealProducts] = useState();
+  const [categoryProducts, setCategoryProducts] = useState();
   const [popular, setPopular] = useState();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -65,15 +67,18 @@ const ProductsProvider = ({ children }) => {
 
    // GET LATEST PRODUCTS IN A CATEGORY
    const getProductsByCategory = async(category)=>{
-    setIsSorting(true)
+    setLoadingProducts(true)
+    setLoadingCategoryProducts(true)
+    
     try {
       const response = await axios(`${baseUrl}/product/category/${category}`)
       const data = response.data
-      console.log(data);
+      setCategoryProducts(data.products)
     } catch (error) {
       console.log(error)
     }finally {
-      setIsSorting(false)
+      setLoadingCategoryProducts(false)
+      setLoadingProducts(false)
     }
   }
 
@@ -156,6 +161,8 @@ const ProductsProvider = ({ children }) => {
     loadingNewin,
     loadingBestOfSales,
     allProducts,
+    categoryProducts,
+    loadingCategoryProducts,
     getAllProducts,
     getByAppeal,
     sortCategoryOrder,

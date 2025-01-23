@@ -109,12 +109,6 @@ export default function AboutPageComponent() {
                 promoting and preserving the rich traditions of Nigeria.
               </li>
             </ul>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis doloribus cumque sit! Quasi cupiditate ipsa expedita
-              perspiciatis eveniet libero nam beatae ut amet, doloremque, ea
-              totam, eaque odio? Totam, ab!
-            </p>
           </div>
         </div>
       </section>
