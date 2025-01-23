@@ -32,7 +32,7 @@ export default function ProductsPageIndex() {
     appealProducts,
   } = useProductsContext();
   // const searchParams = useSearchParams();
-  const url = new URL(window.location.href);
+  const url = new URL( window && window.location.href);
   const params = new URLSearchParams(url.search);
   const c = params.get("c");
   
@@ -62,7 +62,7 @@ export default function ProductsPageIndex() {
     <div className="pt-[70px] container">
       <section className="my-8">
         <Tabs defaultValue={appeal}>
-          <section className="flex items-center justify-between">
+          <section className="flex flex-wrap gap-4 items-center justify-between">
             <TabsList>
               <TabsTrigger
                 value="men"

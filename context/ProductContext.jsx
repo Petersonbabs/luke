@@ -74,8 +74,6 @@ const ProductsProvider = ({ children }) => {
      try {
        const response = await axios(`${baseUrl}/product/category/${category}`)
        const data = response.data
-       console.log(data);
-       
       setCategoryProducts(data.products)
     } catch (error) {
       console.log(error)
