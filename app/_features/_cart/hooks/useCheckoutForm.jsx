@@ -12,7 +12,7 @@ const useCheckoutForm = () => {
     city: "Ibadan",
     state: "Oyo State",
     zipCode: "200109",
-    pickup: false,
+    pickup: true,
   });
 
   const [errors, setErrors] = useState({});

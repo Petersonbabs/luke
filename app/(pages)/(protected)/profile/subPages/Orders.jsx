@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 
 const Orders = () => {
   const { getAllOrders, userOrders, loadingAllOrder } = useOrderContext();
+  
   useEffect(() => {
     getAllOrders();
   }, []);
@@ -22,9 +23,9 @@ const Orders = () => {
         <Loader /> :
         <section>
         {
-          userOrders.length == 0 ?
+          userOrders.length > 0 ?
           <>
-            <OrderList />
+            <OrderList userOrders={userOrders}/>
           </> : 
           <section className='max-w-[600px] m-auto my-8'>
             <div className='flex flex-col items-center gap-4'>

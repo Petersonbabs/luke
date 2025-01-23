@@ -4,6 +4,7 @@ import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import { useAuthContext } from "./AuthContext";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const orderContext = createContext()
 export const useOrderContext = ()=>{
@@ -20,9 +21,12 @@ const OrderProvider = ({children})=>{
     const [userOrders, setUserOrders] = useState({})
     const [loadingAllOrders, setLoadingAllOrders] = useState(false)
     const [creatingOrder, setCreatingOrder] = useState(false)
+    const [verifyingPayment, setVerifyingPayment] = useState(false)
     const [loadingSingleOrder, setLoadingSinlgeOrder] = useState(false)
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const {user} = useAuthContext()
+    const [paymentVerified, setPaymentVerified] = useState(false)
+    const navigate = useRouter()
 
     // GET ALL USER'S ORDERS
     const getAllOrders = withPermission(async ()=>{
@@ -30,8 +34,7 @@ const OrderProvider = ({children})=>{
         try {
             const response = await axios(`${baseUrl}/user/order/${user.id}`)
             const data = response.data
-            console.log(response);
-            console.log(data);
+            setUserOrders(data.orders)
         } catch (error) {
             console.log(error);
         } finally{
@@ -56,13 +59,19 @@ const OrderProvider = ({children})=>{
 
      // VERIFY PAYMENT
     const verifyPayment = withPermission(async (paymentCode)=>{
+        setVerifyingPayment(true)
+        
         try {
             const response = await axios.post(`${baseUrl}/verify/paystack/payment/${paymentCode}`)
             const data = response.data
-            console.log(response);
-            console.log(data);
+            setPaymentVerified(data)
         } catch (error) {
             console.log(error)
+            if(error.code == "ERR_BAD_REQUEST"){
+                toast.error(error.response.data.message)
+            }
+        } finally {
+            setVerifyingPayment(false)
         }
     })
 
@@ -73,6 +82,7 @@ const OrderProvider = ({children})=>{
         try {
             const response = await axios.post(`${baseUrl}/order/${user.id}`, formData)
             const data = response.data
+            navigate.push(data.paymentLink)
             console.log(response);
             console.log(data);
         } catch (error) {
@@ -94,10 +104,12 @@ const OrderProvider = ({children})=>{
         loadingAllOrders,
         loadingSingleOrder,
         creatingOrder,
+        paymentVerified,
         createNewOrder,
         getAllOrders,
         getSingleOrder,
-        verifyPayment
+        verifyPayment,
+        verifyingPayment
     }
     return <orderContext.Provider value={value}>{children}</orderContext.Provider>
 }

@@ -39,10 +39,10 @@ const ProductsProvider = ({ children }) => {
   // GET BY APPEAL (MEN, WOMEN)
   const getByAppeal = async (appeal) => {
     setLoadingAppeal(true)
-    console.log('Appeal products loading...');
     try {
       const response = await axios(`${baseUrl}/category/appeal/${appeal}`);
       const data = response.data
+      
       setAppealProducts(data.productsByCategory)
     } catch (error) {
       console.log(error);
@@ -67,12 +67,15 @@ const ProductsProvider = ({ children }) => {
 
    // GET LATEST PRODUCTS IN A CATEGORY
    const getProductsByCategory = async(category)=>{
-    setLoadingProducts(true)
-    setLoadingCategoryProducts(true)
-    
-    try {
-      const response = await axios(`${baseUrl}/product/category/${category}`)
-      const data = response.data
+     
+     setLoadingProducts(true)
+     setLoadingCategoryProducts(true)
+     
+     try {
+       const response = await axios(`${baseUrl}/product/category/${category}`)
+       const data = response.data
+       console.log(data);
+       
       setCategoryProducts(data.products)
     } catch (error) {
       console.log(error)
@@ -135,17 +138,18 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
-  // SORT PRODUCT BY CATEGORY ORDER (ASCEND / DESCEND)
+  // SORT PRODUCT BY CATEGORY ORDER (ASCEND / DESCEND / LATEST)
   const sortCategoryOrder = async(order, category)=>{
-    setIsSorting(true)
+    setLoadingCategoryProducts(true)
     try {
       const response = await axios(`${baseUrl}/product/category/${order}/${category}`)
       const data = response.data
       console.log(data);
+      setCategoryProducts(data)
     } catch (error) {
       console.log(error)
     }finally {
-      setIsSorting(false)
+      setLoadingCategoryProducts(false)
     }
   }
 

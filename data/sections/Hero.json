@@ -1,7 +1,7 @@
 {
     "action": {
         "content" : "Start Shopping",
-        "href": "/products"
+        "href": "/products?c=buba&n=men"
     },
     "slides": [
         {
