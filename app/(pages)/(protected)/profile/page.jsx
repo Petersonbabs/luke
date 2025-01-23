@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfilePageIndex from ".";
 import ProfileSidebar from "./ProfileSidebar";
 import { useAuthContext } from "@/context/AuthContext";
