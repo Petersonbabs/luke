@@ -27,15 +27,22 @@ export default function ProductsPageIndex() {
     sortCategoryOrder,
     appealProducts,
   } = useProductsContext();
-  // const searchParams = useSearchParams();
-  const url = new URL(window && window.location && window.location.href);
-  const params = new URLSearchParams(url.search);
-  const c = params.get("c");
-  
-  const n = params.get("n");
   const router = useRouter();
   const [category, setCategory] = useState(c);
   const [appeal, setAppeal] = useState(n);
+  useEffect(() => {
+    // This code will only run on the client side
+    if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+
+        const c = params.get('c');
+        const n = params.get('n');
+
+        setCategory(c);
+        setAppeal(n);
+    }
+}, []);
 
   const changeCategory = (selectedCategory) => {
     setCategory(selectedCategory);
