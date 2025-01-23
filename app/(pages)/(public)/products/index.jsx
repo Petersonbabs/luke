@@ -28,7 +28,7 @@ export default function ProductsPageIndex() {
     appealProducts,
   } = useProductsContext();
   // const searchParams = useSearchParams();
-  const url = new URL( window.location && window.location.href);
+  const url = new URL(window && window.location && window.location.href);
   const params = new URLSearchParams(url.search);
   const c = params.get("c");
   
