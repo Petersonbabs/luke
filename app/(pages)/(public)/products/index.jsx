@@ -28,8 +28,8 @@ export default function ProductsPageIndex() {
     appealProducts,
   } = useProductsContext();
   const router = useRouter();
-  const [category, setCategory] = useState(c);
-  const [appeal, setAppeal] = useState(n);
+  const [category, setCategory] = useState(null)
+  const [appeal, setAppeal] = useState(null);
   useEffect(() => {
     if (typeof window !== 'undefined') {
         const url = new URL(window.location.href);
@@ -37,7 +37,7 @@ export default function ProductsPageIndex() {
 
         const c = params.get('c');
         const n = params.get('n');
-        
+
         setCategory(c);
         setAppeal(n);
     }
