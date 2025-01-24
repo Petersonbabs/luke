@@ -6,7 +6,8 @@ import { useEffect } from "react";
 
 
 const CartPage = () => {
-  const {getUserCart, cartItems, deliveryFee, getDeliveryFee} = useCartContext()
+  const {getUserCart, cartItems, deliveryFee, getDeliveryFee, cartWeight} = useCartContext()
+  
   useEffect(()=>{
     getUserCart()
     getDeliveryFee()
@@ -18,7 +19,7 @@ const CartPage = () => {
         <CartList cartItems={cartItems}/>
         {
           cartItems?.items.length > 0 && (
-            <OrderSummary cartItems={cartItems} deliveryFee={deliveryFee}/>
+            <OrderSummary cartItems={cartItems} deliveryFee={deliveryFee * cartWeight}/>
           )
         }
       </section>

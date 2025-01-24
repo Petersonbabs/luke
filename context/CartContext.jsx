@@ -26,6 +26,7 @@ const CartProvider = ({ children }) => {
   const { getUserWishList, removeFromWishList, userWishList } =
     useWishListContext();
     const [deliveryFee, setDeliveryFee] = useState(0)
+    const [cartWeight, setCartWeight] = useState(0)
 
   const checkoutFromWislist = (productId) => {
     getUserWishList();
@@ -73,6 +74,7 @@ const CartProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/cart/${user.id}`);
       const data = response.data;
       setCartItems(data);
+      setCartWeight(data.totalWeight)
     } catch (error) {
       console.log(error);
     } finally {
@@ -157,6 +159,7 @@ const CartProvider = ({ children }) => {
     operatingCartItem,
     removingCartItem,
     deliveryFee,
+    cartWeight,
     getUserCart,
     addToCart,
     clearUserCart,

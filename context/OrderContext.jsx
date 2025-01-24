@@ -36,13 +36,15 @@ const OrderProvider = ({children})=>{
         city: "",
         state: "",
         zipCode: "",
-        pickup: false,
+        pickup: "false",
       });
 
       const handleOrderInputChange = (e) => {
         const { name, value,type } = e.target;
-        const newValue = type === "radio" ? value === "true" : value;
-        setFormData({ ...formData, [name]: newValue });
+        // const newValue = type === "radio" ? value === "true" : value;
+        setFormData({ ...formData, [name]: value });
+        console.log(formData);
+        
       };
 
     // GET ALL USER'S ORDERS

@@ -29,7 +29,7 @@ const CheckoutForm = () => {
             type="radio"
             id="delivery"
             name="pickup"
-            value={false}
+            value="false"
             className="ml-3"
             onChange={handleOrderInputChange}
           />
@@ -43,7 +43,7 @@ const CheckoutForm = () => {
             type="radio"
             id="pickup"
             name="pickup"
-            value={true}
+            value="true"
             className="ml-3"
             onChange={handleOrderInputChange}
           />

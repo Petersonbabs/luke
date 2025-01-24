@@ -17,7 +17,7 @@ import { useOrderContext } from "@/context/OrderContext";
 import { Bike } from "lucide-react";
 
 const CheckoutIndex = () => {
-  const { cartItems, getDeliveryFee, deliveryFee } = useCartContext();
+  const { cartItems, getDeliveryFee, deliveryFee, cartWeight } = useCartContext();
   const { createNewOrder, creatingOrder } = useOrderContext();
   const { formData, validateForm } = useCheckoutForm();
   const handleSubmit = (e) => {
@@ -75,6 +75,14 @@ const CheckoutIndex = () => {
                 <span>Delivery Fee:</span>
                 <span>₦{deliveryFee.toLocaleString()}</span>
               </li>
+              <li className="flex justify-between items-center">
+                <span>Total weight:</span>
+                <span>{cartWeight}kg</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Total Shipping:</span>
+                <span>₦{(cartWeight * deliveryFee).toLocaleString()} </span>
+              </li>
               <li className="flex justify-between items-center italic">
                 <span>VAT inclusive.</span>
               </li>
@@ -82,7 +90,7 @@ const CheckoutIndex = () => {
             <div className="mb-4 p-4 flex justify-between items-center ">
               <span className="font-bold">Total</span>
               <span>
-                ₦{(cartItems?.subTotal + deliveryFee).toLocaleString()}
+                ₦{(cartItems?.subTotal + deliveryFee * cartWeight).toLocaleString()}
               </span>
             </div>
           </Card>

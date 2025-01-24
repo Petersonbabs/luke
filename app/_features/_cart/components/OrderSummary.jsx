@@ -14,7 +14,7 @@ const OrderSummary = ({cartItems, deliveryFee}) => {
             </li>
             <li className="flex justify-between items-center">
                 <span>Delivery Fee:</span>
-                <span>₦{cartItems?.deliveryFee?.toLocaleString() || deliveryFee.toLocaleString()}</span>
+                <span>₦{deliveryFee.toLocaleString()}</span>
             </li>
             <li className="flex justify-between items-center">
                 <span>Total:</span>
