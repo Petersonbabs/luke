@@ -61,6 +61,14 @@ const MiniSidebar = ({ setOpen }) => {
             >
               <i class="fa-brands fa-whatsapp"></i>
             </Link>
+            <Link
+              href={
+                "https://www.threads.net/@luxeby_dnbl?invite=1"
+              }
+              className="border w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black hover:text-white transition-all"
+            >
+              <i class="fa-brands fa-threads"></i>
+            </Link>
           </div>
     </section>
   );
