@@ -46,6 +46,7 @@ const WishListProvider = ({ children }) => {
     try {
       await axios.post(`${baseUrl}/add/favourite/${user.id}/${productId}`);
       toast.success('Added to wishlist')
+      getUserWishList(true)
     } catch (error) {
       console.log(error);
     } finally {
