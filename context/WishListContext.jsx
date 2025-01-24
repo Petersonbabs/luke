@@ -16,6 +16,7 @@ export const useWishListContext = () => {
 
 const WishListProvider = ({ children }) => {
   const [userWishList, setUserWishList] = useState([]);
+  const [wishListIds, setWishListIds] = useState([])
   const [loadingWishList, setLoadingWishList] = useState(false);
   const [addingWishList, setAddingWishList] = useState("");
   const [removingFromWishList, setRemovingFromWishList] = useState("");
@@ -29,6 +30,9 @@ const WishListProvider = ({ children }) => {
       const response = await axios(`${baseUrl}/favourite/${user.id}`);
       const data = response.data;
       setUserWishList(data.favorites)
+      const ids = data.favorites.map(item => item._id)
+      setWishListIds(ids)
+      
     } catch (error) {
       console.log(error);
     } finally {
@@ -68,6 +72,7 @@ const WishListProvider = ({ children }) => {
     loadingWishList,
     addingWishList,
     removingFromWishList,
+    wishListIds,
     addToWishList,
     getUserWishList,
     removeFromWishList  

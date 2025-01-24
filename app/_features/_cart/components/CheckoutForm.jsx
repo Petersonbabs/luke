@@ -9,7 +9,7 @@ import { useOrderContext } from "@/context/OrderContext";
 import { AnimatedLoader } from "@/components/common/Loader";
 
 const CheckoutForm = () => {
-  const { formData, handleInputChange, validateForm, errors } = useCheckoutForm();
+  const { formData, handleOrderInputChange, validateForm, errors } = useCheckoutForm();
   const {createNewOrder, creatingOrder} = useOrderContext()
 
   const handleSubmit = (e) => {
@@ -31,7 +31,7 @@ const CheckoutForm = () => {
             name="pickup"
             value={false}
             className="ml-3"
-            onChange={handleInputChange}
+            onChange={handleOrderInputChange}
           />
           <label htmlFor="delivery" className="flex items-end gap-2 py-2 pr-3 cursor-pointer w-full ">
             <Truck className="font-thin size-6" />
@@ -45,7 +45,7 @@ const CheckoutForm = () => {
             name="pickup"
             value={true}
             className="ml-3"
-            onChange={handleInputChange}
+            onChange={handleOrderInputChange}
           />
           <label htmlFor="pickup" className="flex items-end gap-2 py-2 pr-3 cursor-pointer w-full ">
             <ShoppingBasket className="font-thin size-6" />
@@ -64,7 +64,7 @@ const CheckoutForm = () => {
           id="name"
           placeholder="Enter Full Name"
           value={formData.name}
-          onChange={handleInputChange}
+          onChange={handleOrderInputChange}
           className="bg-white"
         />
         {errors.name && <p className="text-red-500">{errors.name}</p>}
@@ -77,7 +77,7 @@ const CheckoutForm = () => {
           id="email"
           placeholder="Enter Email"
           value={formData.email}
-          onChange={handleInputChange}
+          onChange={handleOrderInputChange}
           className="bg-white"
         />
         {errors.email && <p className="text-red-500">{errors.email}</p>}
@@ -90,7 +90,7 @@ const CheckoutForm = () => {
           id="phone"
           placeholder="Enter Phone Number"
           value={formData.phone}
-          onChange={handleInputChange}
+          onChange={handleOrderInputChange}
           className="bg-white"
         />
         {errors.phone && <p className="text-red-500">{errors.phone}</p>}
@@ -103,7 +103,7 @@ const CheckoutForm = () => {
           id="country"
           placeholder="Enter Country"
           value={formData.country}
-          onChange={handleInputChange}
+          onChange={handleOrderInputChange}
           className="bg-white"
         />
         {errors.country && <p className="text-red-500">{errors.country}</p>}
@@ -116,7 +116,7 @@ const CheckoutForm = () => {
           id="address"
           placeholder="Enter address"
           value={formData.address}
-          onChange={handleInputChange}
+          onChange={handleOrderInputChange}
           className="bg-white"
         />
         {errors.address && <p className="text-red-500">{errors.address}</p>}
@@ -130,7 +130,7 @@ const CheckoutForm = () => {
             name="city"
             id="city"
             value={formData.city}
-            onChange={handleInputChange}
+            onChange={handleOrderInputChange}
             className="bg-white"
           />
           {errors.city && <p className="text-red-500">{errors.city}</p>}
@@ -142,7 +142,7 @@ const CheckoutForm = () => {
             name="state"
             id="state"
             value={formData.state}
-            onChange={handleInputChange}
+            onChange={handleOrderInputChange}
             className="bg-white"
           />
           {errors.state && <p className="text-red-500">{errors.state}</p>}
@@ -154,7 +154,7 @@ const CheckoutForm = () => {
             name="zipCode"
             id="zipCode"
             value={formData.zipCode}
-            onChange={handleInputChange}
+            onChange={handleOrderInputChange}
             className="bg-white"
           />
           {errors.zipCode && <p className="text-red-500">{errors.zipCode}</p>}
@@ -172,7 +172,7 @@ const CheckoutForm = () => {
               value="paystack"
               className="ml-3"
               checked
-              onChange={handleInputChange}
+              onChange={handleOrderInputChange}
             />
             <label htmlFor="paystack" className="flex items-end gap-2 py-3 pr-3 cursor-pointer w-full">
               <Image src={PayStackLogo} alt="PayStackLogo" width={100} height={100} />
@@ -185,7 +185,7 @@ const CheckoutForm = () => {
               name="paymentType"
               value="flutterwave"
               className="ml-3"
-              onChange={handleInputChange}
+              onChange={handleOrderInputChange}
             />
             <label htmlFor="flutterwave" className="flex items-end gap-2 py-2 pr-3 cursor-pointer w-full">
               <Image src={FluterWaveLogo} alt="FlutterWaveLogo" width={100} height={100} />

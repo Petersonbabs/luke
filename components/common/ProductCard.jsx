@@ -4,13 +4,13 @@ import { Heart } from "lucide-react";
 import { AnimatedLoader } from "./Loader";
 
 const ProductCard = ({ product }) => {
-  const { addToWishList, addingWishList } = useWishListContext();
+  const { addToWishList, addingWishList, wishListIds } = useWishListContext();
   return (
-    <div className=" bg-white">
+    <div className=" bg-white min-w-[300px]">
       <Card className="rounded-none border shadow-none  ">
         <CardContent className="relative">
           <button
-            className="absolute right-8 text-white flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all"
+            className={`absolute right-8 text-white flex items-center justify-center  ${wishListIds.includes(product._id) ? "bg-red-500" : "bg-[#00000084]"} rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all`}
             onClick={() => {
               addToWishList(product._id);
             }}

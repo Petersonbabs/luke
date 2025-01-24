@@ -10,6 +10,7 @@
     margin: auto;
     min-height: 300px;
     height: 200px;
+    cursor: pointer;
 }
 
 .collection .content img{

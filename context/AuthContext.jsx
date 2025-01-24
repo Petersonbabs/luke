@@ -17,12 +17,9 @@ let localUser;
 let localToken;
 
 if (typeof window !== "undefined") {
-  // Only run on the client side (in the browser)
   localUser = JSON.parse(localStorage.getItem("user"));
   localToken = localStorage.getItem("token");
-  // if (localUser) {
-  //   setUser(localUser);
-  // }
+
 }
 
 const AuthProvider = ({ children }) => {
@@ -35,11 +32,8 @@ const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     setLoadingAuth(true);
     try {
-      const response = await axios.post(
-        `${baseUrl}/user/login
-      `,
-        formData
-      );
+      const response = await axios.post(`${baseUrl}/user/login`,formData);
+      console.log(response.data);
       const { email, id, token } = response.data;
       if (response.status == 200) {
         const user = {

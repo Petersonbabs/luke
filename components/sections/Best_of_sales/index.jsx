@@ -12,8 +12,8 @@ const BestOfSalesIndex = ({ title }) => {
   }, []);
   return (
     <section className="container my-8 mx-auto">
-      <h2 className="lbd-sub-text">{title}</h2>
-      <section className="flex overflow-x-scroll scrolled-product">
+      <h2 className="lbd-sub-text mb-4">{title}</h2>
+      <section className="flex overflow-x-scroll scrolled-product gap-4">
         {!loadingBestOfSales ? (
           <>
             {bestSales?.length > 0 ? (

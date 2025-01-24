@@ -59,7 +59,7 @@ export default function ProductsPageIndex() {
 
   useEffect(() => {
     getProductsByCategory(category);
-  }, [c, category]);
+  }, [category]);
   return (
     <div className="pt-[70px] container">
       <section className="my-8">

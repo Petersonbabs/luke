@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ReviewCard({review}) {
   return (
-    <section className="review-card flex gap-4 border p-4 flex-wrap border-x-0 border-b-1 border-t-0">
+    <section className="review-card flex gap-4 border p-4 flex-col border-x-0 border-b-1 border-t-0">
       <div className="left flex justify-center items-center w-[50px] h-[50px] rounded-full bg-[#eee]">
         {
             review.userImage ?
@@ -18,7 +18,7 @@ export default function ReviewCard({review}) {
         </div>
         <div className="flex gap-4 items-center">
             {[1, 2, 3, 4, 5].map((rating, index) => (
-              <Star className={`${review.rating >= rating ? " fill-black" : ""} size-4`} onClick={()=>{handleInput("rating", rating)}}/>
+              <Star className={`${review.rating >= rating ? " fill-black" : ""} size-4`} onClick={()=>{handleInput("rating", rating)}} key={index}/>
             ))}
           </div>
         <p>{review.review}</p>

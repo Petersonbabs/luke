@@ -28,16 +28,16 @@ export default function RootLayout({ children }) {
       <body className={`antialiased ${manjari.className}`}>
         <AuthProvider>
           <ProductsProvider>
-            <CartProvider>
-              <OrderProvider>
-                <ReviewProvider>
-                  <WishListProvider>
+            <WishListProvider>
+              <CartProvider>
+                <OrderProvider>
+                  <ReviewProvider>
                     <Toaster position="bottom-right" richColors closeButton />
                     <section >{children}</section>
-                  </WishListProvider>
-                </ReviewProvider>
-              </OrderProvider>
-            </CartProvider>
+                  </ReviewProvider>
+                </OrderProvider>
+              </CartProvider>
+            </WishListProvider>
           </ProductsProvider>
         </AuthProvider>
       </body>

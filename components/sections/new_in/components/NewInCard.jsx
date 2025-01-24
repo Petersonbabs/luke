@@ -4,18 +4,18 @@ import { AnimatedLoader } from "@/components/common/Loader";
 import { useWishListContext } from "@/context/WishListContext";
 
 const NewInCard = ({ product }) => {
-  const {addToWishList, addingWishList} = useWishListContext()
+  const {addToWishList, addingWishList, wishListIds} = useWishListContext()
   return (
     <div className="">
-      <Card className="rounded-none pt-4 shadow-none border-none ">
+      <Card className="rounded-none cursor-pointer pt-4 shadow-none border-none ">
         <CardContent className="relative">
-          <button className="absolute right-8 text-white flex items-center justify-center bg-[#00000084] rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all" onClick={()=>{
+          <button className={`absolute right-8 text-white flex items-center justify-center  ${wishListIds.includes(product._id) ? "bg-red-500" : "bg-[#00000084]"}  rounded-full top-8 font-thin w-10 h-10 hover:bg-black transition-all`} onClick={()=>{
             addToWishList(product._id)
           }}>
             {
             addingWishList == product._id ?
               <AnimatedLoader className="text-white" /> :
-            <Heart className="w-5 text-white" />
+            <Heart className={`w-5 text-white`} />
             }
           </button>
           <a href={`/products/${product._id}`}>

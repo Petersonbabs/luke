@@ -27,6 +27,23 @@ const OrderProvider = ({children})=>{
     const {user} = useAuthContext()
     const [paymentVerified, setPaymentVerified] = useState(false)
     const navigate = useRouter()
+    const [formData, setFormData] = useState({
+        name: "",
+        email: user?.email,
+        phone: "",
+        country: "",
+        address: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        pickup: false,
+      });
+
+      const handleOrderInputChange = (e) => {
+        const { name, value,type } = e.target;
+        const newValue = type === "radio" ? value === "true" : value;
+        setFormData({ ...formData, [name]: newValue });
+      };
 
     // GET ALL USER'S ORDERS
     const getAllOrders = withPermission(async ()=>{
@@ -57,6 +74,23 @@ const OrderProvider = ({children})=>{
         }
     })
 
+    // CLEAR CART
+    const clearCart = withPermission(async ()=>{
+        setCreatingOrder(true)
+        try {
+            const response = await axios.post(`${baseUrl}/clear/cart/${user.id}`, formData)
+            const data = response.data
+            toast.success(data.message)
+        } catch (error) {
+            console.log(error)
+            if(error.code == "ERR_BAD_REQUEST"){
+                toast.error(error.response.data.message)
+            }
+        }finally{
+            setCreatingOrder(false)
+        }
+    })
+
      // VERIFY PAYMENT
     const verifyPayment = withPermission(async (paymentCode)=>{
         setVerifyingPayment(true)
@@ -65,6 +99,7 @@ const OrderProvider = ({children})=>{
             const response = await axios.post(`${baseUrl}/verify/paystack/payment/${paymentCode}`)
             const data = response.data
             setPaymentVerified(data)
+            clearCart()
         } catch (error) {
             console.log(error)
             if(error.code == "ERR_BAD_REQUEST"){
@@ -77,19 +112,14 @@ const OrderProvider = ({children})=>{
 
     // CREATE NEW ORDER
     const createNewOrder = withPermission(async (formData)=>{
-        console.log(formData)
         setCreatingOrder(true)
         try {
             const response = await axios.post(`${baseUrl}/order/${user.id}`, formData)
             const data = response.data
             navigate.push(data.paymentLink)
-            console.log(response);
-            console.log(data);
+            
         } catch (error) {
             console.log(error)
-            // if(error.name == "AxiosError"){
-            //     toast.error(error.message)
-            // }
             if(error.code == "ERR_BAD_REQUEST"){
                 toast.error(error.response.data.message)
             }
@@ -105,10 +135,12 @@ const OrderProvider = ({children})=>{
         loadingSingleOrder,
         creatingOrder,
         paymentVerified,
+        formData,
         createNewOrder,
         getAllOrders,
         getSingleOrder,
         verifyPayment,
+        handleOrderInputChange,
         verifyingPayment
     }
     return <orderContext.Provider value={value}>{children}</orderContext.Provider>

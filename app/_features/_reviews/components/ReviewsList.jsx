@@ -36,7 +36,7 @@ export default function ReviewsList({ id }) {
           <p>please take a moment to rate and review.</p>
           <div className="flex gap-4 items-center">
             {[1, 2, 3, 4, 5].map((rating, index) => (
-              <Star className={`${formData.rating >= rating ? " fill-black" : ""}`} onClick={()=>{handleInput("rating", rating)}}/>
+              <Star className={`${formData.rating >= rating ? " fill-black" : ""}`} onClick={()=>{handleInput("rating", rating)}} key={index}/>
             ))}
           </div>
           <div className=" flex bg-white rounded-lg items-center border w-full">

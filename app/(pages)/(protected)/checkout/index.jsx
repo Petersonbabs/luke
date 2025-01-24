@@ -11,23 +11,27 @@ import CheckoutForm from "@/app/_features/_cart/components/CheckoutForm";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { useCartContext } from "@/context/CartContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCheckoutForm from "@/app/_features/_cart/hooks/useCheckoutForm";
 import { useOrderContext } from "@/context/OrderContext";
 import { Bike } from "lucide-react";
 
 const CheckoutIndex = () => {
-  const { formData, handleInputChange, validateForm, errors } =
-    useCheckoutForm();
+  const { cartItems, getDeliveryFee, deliveryFee } = useCartContext();
   const { createNewOrder, creatingOrder } = useOrderContext();
+  const { formData, validateForm } = useCheckoutForm();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       createNewOrder(formData);
     }
   };
-  const { cartItems } = useCartContext();
-  const [deliveryFee, setDeliveryFee] = useState(3000);
+
+  useEffect(()=>{
+    getDeliveryFee()
+    console.log(cartItems);
+    
+  },[])
   return (
     <section className="pt-[90px] container">
       <Breadcrumb>
@@ -71,9 +75,8 @@ const CheckoutIndex = () => {
                 <span>Delivery Fee:</span>
                 <span>₦{deliveryFee.toLocaleString()}</span>
               </li>
-              <li className="flex justify-between items-center">
-                <span>VAT:</span>
-                <span>₦0.00</span>
+              <li className="flex justify-between items-center italic">
+                <span>VAT inclusive.</span>
               </li>
             </ul>
             <div className="mb-4 p-4 flex justify-between items-center ">
@@ -83,27 +86,27 @@ const CheckoutIndex = () => {
               </span>
             </div>
           </Card>
-            <button
-              onClick={handleSubmit}
-              disabled={creatingOrder}
-              className={` w-full transition-all text-white py-2 px-4 rounded ${
-                creatingOrder
-                  ? "bg-blue-400 hover:bg-blue-400"
-                  : "bg-blue-500 hover:bg-blue-600"
-              }`}
-            >
-              {creatingOrder ? (
-                <p className="flex gap-4 justify-center  items-center">
-                  <Bike className=" animate-bounce" />
-                  <span>Ordering...</span>
-                </p>
-              ) : (
-                <p className="flex gap-4 justify-center items-center">
-                  <Bike />
-                  <span>Place Order</span>
-                </p>
-              )}
-            </button>
+          <button
+            onClick={handleSubmit}
+            disabled={creatingOrder}
+            className={` w-full transition-all text-white py-2 px-4 rounded ${
+              creatingOrder
+                ? "bg-blue-400 hover:bg-blue-400"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {creatingOrder ? (
+              <p className="flex gap-4 justify-center  items-center">
+                <Bike className=" animate-bounce" />
+                <span>Ordering...</span>
+              </p>
+            ) : (
+              <p className="flex gap-4 justify-center items-center">
+                <Bike />
+                <span>Place Order</span>
+              </p>
+            )}
+          </button>
         </section>
       </section>
     </section>

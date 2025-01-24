@@ -32,7 +32,7 @@ const SingleProductIndex = () => {
     handleAddToCart,
     handleSelectColor,
   } = useSingleProduct();
-  const {addToWishList, addingWishList} = useWishListContext()
+  const {addToWishList, addingWishList, wishListIds} = useWishListContext()
 
   return (
     <section className="pt-[70px]">
@@ -173,7 +173,7 @@ const SingleProductIndex = () => {
               </button>
               <div >
                 <button
-                  className="wishlist-btn"
+                  className={`wishlist-btn ${wishListIds.includes(singleProduct?._id) ? "bg-red-500 text-white" : "bg-[#DDE2FB]"}`}
                   onClick={() => {
                     addToWishList(singleProduct?._id);
                   }}
@@ -181,7 +181,7 @@ const SingleProductIndex = () => {
                   {addingWishList == singleProduct?._id ? (
                     <AnimatedLoader />
                   ) : (
-                    <Heart className="w-5 " />
+                    <Heart className={`w-5 ${wishListIds.includes(singleProduct?._id) ? "text-white" : "black"}`} />
                   )}
                 </button>
               </div>
