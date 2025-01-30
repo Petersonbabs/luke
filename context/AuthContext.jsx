@@ -34,18 +34,19 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(`${baseUrl}/user/login`,formData);
       console.log(response.data);
-      const { email, id, token } = response.data;
+      const { email, id } = response.data
       if (response.status == 200) {
         const user = {
           email,
           id,
         };
+        
         setUser(user);
-        setToken(token);
+        setToken(response.data.token);
         toast.success("Login successful");
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(user));
-        navigate.push("/");
+        // navigate.push("/");
       }
     } catch (error) {
       console.log(error);
