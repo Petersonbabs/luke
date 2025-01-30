@@ -53,7 +53,7 @@ const ContactPageIndex = () => {
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
         <div className="flex gap-4 items-center">
           <Mail />
-          <span>dnbl@gmail.com</span>
+          <span>Luxebydnbl@gmail.com</span>
         </div>
         <div className="flex gap-4 items-center">
           <Phone />
@@ -61,7 +61,7 @@ const ContactPageIndex = () => {
         </div>
         <div className="flex gap-4 items-center">
           <MapPin />
-          <span>id amet tellus eu mus ac nec. pellentesque ut at. Qua.</span>
+          <span>4, Layosipe Street, Itamerin,Ago-iwoye, Ogun State.</span>
         </div>
       </section>
     </div>

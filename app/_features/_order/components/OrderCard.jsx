@@ -1,6 +1,7 @@
 import { ImageIcon} from "lucide-react";
 
 const OrderCard = ({ item}) => {
+  console.log(item);
   
   return (
     <div className="flex p-4 gap-4 items-center flex-wrap w-full  rounded-md border">
